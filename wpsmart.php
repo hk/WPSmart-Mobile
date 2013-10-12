@@ -6,13 +6,13 @@
 Plugin Name: WPSmart Mobile
 Plugin URI: http://www.wpsmart.com
 Description: Present your Wordpress site in a beautiful theme optimized for touch-based smartphones
-Version: 1.0.1
+Version: 1.0.2
 Author: WPSmart
-Author URI: http://www.wpsmart.com/mobile
+Author URI: http:fwww.wpsmart.com/mobile
 License: GPLv2 or later
 */
 
-define("WPSMART_VERSION", '1.0.1');
+define("WPSMART_VERSION", '1.0.2');
 define("WPSMART_BASE_THEME", dirname(__FILE__) . '/themes/base');
 
 require_once('admin/admin.php');
@@ -276,12 +276,10 @@ endif; // if ( ! class_exists( 'WPSmart' ) ) :
 function wps_enqueue_header()
 {
 
-	wp_register_script( 'jquery-mobile', wps_get_base_theme_uri() . '/base-js/jquery.mobile-1.2.0.min.js' );
 	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time() );
 	wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time() );
 	
 	wp_enqueue_script( 'jquery' );	
-	wp_enqueue_script( 'jquery-mobile' );
 	wp_enqueue_script( 'comment-reply' );	
 	wp_enqueue_script( 'wps-scripts' );
 	wp_enqueue_script( 'wps-base' );
@@ -292,7 +290,7 @@ function wps_enqueue_header()
 	
 	wp_enqueue_style( 'base-style' );
 	wp_enqueue_style( 'style' );
-	wp_enqueue_style( 'font-awesome' );
+	wp_enqueue_style( 'font-awesome' );	
 }
 
 function wps_user_agents()
@@ -325,6 +323,22 @@ function wps_get_base_theme()
 	return $wpsmart->wps_theme_root() . '/base';
 }
 
+function wps_is_uploads_directory_writable()
+{
+	$upload = wp_upload_dir();
+	$basedir = $upload['basedir'];
+	$error = $upload['error'];
+	
+	return is_writable( $basedir );
+}
+
+function wps_upload_base_dir()
+{
+	$upload = wp_upload_dir();
+	$basedir = $upload['basedir'];
+	
+	return $basedir;
+}
 
 function wps_upload_dir($upload)
 {

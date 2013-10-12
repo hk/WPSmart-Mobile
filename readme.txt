@@ -1,5 +1,5 @@
 === WPSmart Mobile ===
-Contributors: wpsmart, _henryk
+Contributors: wpsmart, _henryk, krutal
 Tags: wpsmart, iphone, mobile, smartphone, android, ipod, ipad, blackberry, windows, theme, mobile-plugin
 Requires at least: 3.0
 Tested up to: 3.6.1
@@ -28,11 +28,20 @@ To customize, go to the *WPSmart* admin page (located in the navigation bar on t
 
 1. Example *WPSmart Classic* theme customized
 2. Example *WPSmart Magazine* theme customized
-3. Magazine theme post page
-4. Plugin admin panel page where you can customize the look and feel of your mobile-theme
-5. View a preview while editing of what your theme changes will look like on an iPhone or Android device!
+3. *Plugin admin panel* page where you can customize the look and feel of your mobile-theme
+4. View a preview while editing of what your theme changes will look like on an iPhone or Android device!
+5. Magazine theme view post page
 
 == Changelog ==
+
+= Version 1.0.2 =
+
+* Fixed: Issues with Firefox when customizing the plugin in the WordPress admin panel
+* Fixed: Various Javascript issues, including ones that affected other plugins from functioning properly with WPSmart Mobile
+* Changed: Menu and Search bars are now fixed at the top of the page regardless of scroll position
+* Added: Ability to not display "Posted by…" meta data below post titles
+* Added: If you're wp-content/uploads directory is not writeable you will now be notified and will need to fix it before trying to upload a Site Logo in the widget admin panel.
+* Other various minor styling and bug fixes
 
 = Version 1.0.1 =
 

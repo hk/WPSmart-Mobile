@@ -10,6 +10,7 @@ $wps_default_options = array(
 	'analytics_type' => 'none',
 	'advertising_type' => 'none',
 	'show_thumbnails' => true,
+	'show_post_author' => true,
 	'show_post_tags' => false,
 	'show_post_categories' => false,
 	'site_title' => get_bloginfo( 'name' ),

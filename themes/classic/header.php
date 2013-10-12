@@ -10,9 +10,8 @@ body {
 	border-top-color: <?php echo wps_get_option( 'header_trim_color' ); ?>;
 	color:  <?php echo wps_get_option( 'header_text_color' ); ?>;
 }
-.arrow-down {
-	border-top-color: <?php echo wps_get_option( 'header_text_color' ); ?>;
-	
+.site-header a {
+	color:  <?php echo wps_get_option( 'header_text_color' ); ?>;
 }
 </style>
 

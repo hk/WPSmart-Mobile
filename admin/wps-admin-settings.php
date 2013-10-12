@@ -19,6 +19,9 @@
 			<span>Site Logo</span>
 		</div>
 		<div class="wps-admin-section-input-group">
+		
+			<?php if( wps_is_uploads_directory_writable() ): ?>
+			
 			<div class="wps-admin-section-input">
 				<input type="file" name="site_logo" id="site_logo"/>
 				<div class="wps-admin-logo-preview" id="wps_admin_logo_preview">
@@ -27,15 +30,26 @@
 					<?php endif; ?>
 				</div>
 			</div>
-			<div class="wps-admin-section-hint">Optimal logo size is 360px by 60px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></div>
+			<div class="wps-admin-section-hint">
+				<span>Optimal logo size is 360px by 60px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></span>
+				<span>Your upload directory is <strong><?php echo wps_upload_base_dir() ?></strong></span>	
+			</div>
+		
+			<?php else: ?>
+				
+			<span class="error">The uploads directory <strong><?php echo wps_upload_base_dir() ?></strong> is NOT writeable, please fix this error and refresh the page.</span>
+				
+			<?php endif; ?>
+		
 		</div>
 		
 		<div class="clear"></div>
 	</div>
 	
+	
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
-			<span>Search</span>
+			<span>General</span>
 		</div>
 		<div class="wps-admin-section-input-group">
 			<p class="wps-admin-input-checkbox">
@@ -43,27 +57,24 @@
 				<input type="checkbox" name="enable_search" id="enable_search" value="1" <?php echo wps_checkbox_text( 'enable_search' ) ?>/><label for="enable_search">Enable search from site header</label>
 			</p>
 		</div>
-		
+		<div class="wps-admin-section-input-group">
+			<div class="wps-admin-input-checkbox">
+				<input type="hidden" name="enable_comments" value="0"/>
+				<input type="checkbox" name="enable_comments" id="enable_comments" value="1" <?php echo wps_checkbox_text( 'enable_comments' ) ?>/><label for="enable_comments">Enable commenting in posts</label>
+			</div>
+		</div>
 		<div class="clear"></div>
 	</div>
 	
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
-			<span>Thumbnails</span>
+			<span>Post settings</span>
 		</div>
 		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-input-checkbox">
-				<input type="hidden" name="show_thumbnails" value="0"/>
-				<input type="checkbox" name="show_thumbnails" id="show_thumbnails" value="1" <?php echo wps_checkbox_text( 'show_thumbnails' ) ?>/><label for="show_thumbnails">Show image thumbnails in post listings (not applicable on some themes)</label>
+				<input type="hidden" name="show_post_author" value="0"/>
+				<input type="checkbox" name="show_post_author" id="show_post_author" value="1" <?php echo wps_checkbox_text( 'show_post_author' ) ?>/><label for="show_post_author">Show post author and date</label>
 			</div>
-		</div>
-	</div>
-	
-	<div class="wps-admin-section">
-		<div class="wps-admin-section-title">
-			<span>Tags & Categories</span>
-		</div>
-		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-input-checkbox">
 				<input type="hidden" name="show_post_tags" value="0"/>
 				<input type="checkbox" name="show_post_tags" id="show_post_tags" value="1" <?php echo wps_checkbox_text( 'show_post_tags' ) ?>/><label for="show_post_tags">Show tags when viewing a post</label>
@@ -72,21 +83,13 @@
 				<input type="hidden" name="show_post_categories" value="0"/>
 				<input type="checkbox" name="show_post_categories" id="show_post_categories" value="1" <?php echo wps_checkbox_text( 'show_post_categories' ) ?>/><label for="show_post_categories">Show categories when viewing a post</label>
 			</div>
-		</div>
-	</div>
-	
-	<div class="wps-admin-section">
-		<div class="wps-admin-section-title">
-			<span>Comments</span>
-		</div>
-		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-input-checkbox">
-				<input type="hidden" name="enable_comments" value="0"/>
-				<input type="checkbox" name="enable_comments" id="enable_comments" value="1" <?php echo wps_checkbox_text( 'enable_comments' ) ?>/><label for="enable_comments">Enable commenting in posts</label>
+				<input type="hidden" name="show_thumbnails" value="0"/>
+				<input type="checkbox" name="show_thumbnails" id="show_thumbnails" value="1" <?php echo wps_checkbox_text( 'show_thumbnails' ) ?>/><label for="show_thumbnails">Show image thumbnails in post listings (not applicable on some themes)</label>
 			</div>
 		</div>
 	</div>
-	
+		
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
 			<span>Analytics</span>

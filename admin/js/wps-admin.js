@@ -413,7 +413,7 @@ function wps_show_page( page ) {
 
 
 function wps_close_preview_modal() {
-	$wpsmart('#wps-admin-preview').hide();
+	$wpsmart('#wps-admin-preview').css('visibility', 'hidden');
 	$wpsmart('#overlay').remove();
 	
 	var wps_preview_frame = $wpsmart('#wps-admin-preview-frame');
@@ -435,6 +435,7 @@ function wps_show_preview_modal() {
 	wps_preview_frame.contents().find('.home-content article .entry-image').toggle($wpsmart('#show_thumbnails').is(':checked'));
 	wps_preview_frame.contents().find('#view-menu').toggle($wpsmart('#enable-menu').is(':checked'));
 	wps_preview_frame.contents().find('#view-search').toggle($wpsmart('#enable_search').is(':checked'));
+	wps_preview_frame.contents().find('.entry-meta span').toggle($wpsmart('#show_post_author').is(':checked'));
 	
 	if( ! $wpsmart('#wps-admin-logo').attr('src') )
 		wps_preview_frame.contents().find('h1.site-title a').text($wpsmart('#site_title').val());
@@ -442,5 +443,5 @@ function wps_show_preview_modal() {
 		wps_preview_frame.contents().find('h1.site-title a').html('<img src="' + $wpsmart('#wps-admin-logo').attr('src') + '"/>');
 
 	$wpsmart('body').append('<div id="overlay"></div>');
-	$wpsmart('#wps-admin-preview').show();
+	$wpsmart('#wps-admin-preview').css('visibility', 'visible');
 }

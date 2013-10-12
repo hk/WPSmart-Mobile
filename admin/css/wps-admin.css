@@ -250,6 +250,10 @@
 	margin-left: 25px;
 }
 
+.wps-admin-section-hint span {
+	display: block;
+}
+
 .wps-admin-section-title,
 .wps-admin-section-input {
 	display: block;
@@ -544,7 +548,7 @@ button.wps-save {
 .wps-admin-preview {
 	width: 345px;
 	z-index: 1010;
-	display: none;
+	visibility: hidden;
 	position: fixed;
 	top: 30px;
 	left: 50%;
@@ -600,7 +604,8 @@ button.wps-save {
 }
 
 #wps-device iframe {
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	right: 0;
 	position: absolute;
 }
@@ -671,6 +676,10 @@ button.wps-save {
 	font-weight: bold;
 	font-size: 14px;
 	margin: 10px 0;
+}
+
+.error {
+	color: #b94a48;	
 }
 
 .alert {

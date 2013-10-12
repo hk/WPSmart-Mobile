@@ -33,7 +33,7 @@
 	
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
-			<span>Header Background Color</span>
+			<span>Site Header Background Color</span>
 		</div>
 		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-section-input">
@@ -45,7 +45,7 @@
 	
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
-			<span>Header Text & Icon Color</span>
+			<span>Site Header Text & Icon Color</span>
 		</div>
 		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-section-input">
@@ -57,7 +57,7 @@
 	
 	<div class="wps-admin-section">
 		<div class="wps-admin-section-title">
-			<span>Header Trim Color</span>
+			<span>Site Header Trim Color</span>
 		</div>
 		<div class="wps-admin-section-input-group">
 			<div class="wps-admin-section-input">

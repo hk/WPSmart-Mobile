@@ -8,9 +8,9 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
 <div id="main-content" class="home-content">
 
+	<?php wps_page_head(); ?>
+	
 <?php endif; ?>
-
-	<?php wps_page_head() ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     	
@@ -25,7 +25,7 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 				    	<?php the_excerpt(); ?>
 				    </div>
     			</a>
-    			<span class="entry-preview">Show article preview</span>
+    			<span class="entry-preview"><a href="#">Show article preview</a></span>
 			    <div class="clear"></div>
     		</div>
 		</article>
@@ -34,11 +34,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
     <?php if ( get_next_posts_link() != '' ): ?>
     
-    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>">Tap to load more articles</div>
+    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>"><a href="#">Tap to load more articles</a></div>
     	
     <?php else : ?>
     	
-    	<div class="load-more">Showing all articles</div>
+    	<div class="load-more showing-all-articles">Showing all articles</div>
     	
     <?php endif; ?>
 
@@ -49,10 +49,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 </div><!-- #main-content -->
 
 <script type='text/javascript'>
-$wpsmart(document).bind("pageinit", function() {
+$wpsmart(document).ready(function() {
 
-    $wpsmart('#load-more').live('tap', function(event) { 
-    	event.stopImmediatePropagation();   	
+   $wpsmart('#main').on('click', '#load-more a', function(event) {
+    	event.preventDefault();
+    	  	
     	var object = $wpsmart(this);
     	object.text('Loading...');
     	
@@ -65,8 +66,9 @@ $wpsmart(document).bind("pageinit", function() {
     	return false;
     });
     
-    $wpsmart('.entry-preview').live('tap', function(event) {  
-    	event.stopImmediatePropagation(); 	
+    $wpsmart('#main').on('click', '.entry-preview a', function(event) {  
+    	event.preventDefault();
+    	
     	var object = $wpsmart(this),
     		content_object = object.closest('.entry-wrapper').find('.entry-content');
     	

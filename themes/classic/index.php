@@ -8,16 +8,16 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
 <div id="main-content" class="home-content">
 
-<?php endif; ?>
+	<?php wps_page_head(); ?>
 
-	<?php wps_page_head() ?>
+<?php endif; ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     	
     	<?php $post_image_src = wps_get_post_image( $post->ID ); ?>
     	
     	<article id="post-<?php the_ID(); ?>" class="swipe">
-    		<div class="entry-wrapper" style="<?php echo $post_image_src == '' ? "padding-right:0" : null ?>">
+    		<div class="entry-wrapper" style="<?php echo $post_image_src == '' || ! wps_get_option( 'show_thumbnails' ) ? "padding-right:0" : null ?>">
     			<a href="<?php the_permalink(); ?>" target="_self" rel="bookmark" style="display:block;">
     				<div class="entry-image" style="<?php if( $post_image_src != '' ): ?>background-image:url(<?php echo $post_image_src ?>);<?php endif; echo ! wps_get_option( 'show_thumbnails' ) ? 'display:none' : null ?>"></div>
 		    		<div class="entry-header">
@@ -36,11 +36,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
     <?php if(get_next_posts_link() != ''): ?>
     
-    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>">Tap to load more articles</div>
+    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>"><a href="#">Tap to load more articles</a></div>
     	
     <?php else: ?>
     	
-    	<div class="load-more">Showing all articles</div>
+    	<div class="load-more showing-all-articles">Showing all articles</div>
     	
     <?php endif; ?>
 
@@ -49,18 +49,21 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 </div><!-- #main-content -->
 
 <script type='text/javascript'>
-$wpsmart(document).bind("pageinit", function() {
-    $wpsmart('#load-more').live('tap', function(event) {    	
+$wpsmart(document).ready(function() {
+
+    $wpsmart('#main').on('click', '#load-more a', function(event) {
+    	event.preventDefault();
+    	     	
     	var object = $wpsmart(this);
     	object.text('Loading...');
     	
     	var data = {action: 'wpsmart_load_more'};
     	    	
-    	$wpsmart.post(object.data('url'), function(response) {
+    	$wpsmart.post(object.parent().data('url'), function(response) {
     		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
     	});
     	
-    	event.stopImmediatePropagation();
+    	return false;
     });
     
 });

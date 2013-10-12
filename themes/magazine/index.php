@@ -8,9 +8,9 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
 <div id="main-content" class="home-content">
 
-<?php endif; ?>
+	<?php wps_page_head(); ?>
 
-	<?php wps_page_head() ?>
+<?php endif; ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     	
@@ -35,11 +35,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 
     <?php if(get_next_posts_link() != ''): ?>
     
-    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>">Tap to load more articles</div>
+    	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>"><a href="#">Tap to load more articles</a></div>
     	
     <?php else: ?>
     	
-    	<div class="load-more">Showing all articles</div>
+    	<div class="load-more showing-all-articles">Showing all articles</div>
     	
     <?php endif; ?>
 
@@ -48,9 +48,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
 </div><!-- #main-content -->
 
 <script type='text/javascript'>
-$wpsmart(document).bind("pageinit", function() {
+$wpsmart(document).ready(function() {
 
-    $wpsmart('#load-more').live('tap', function(event) {    	
+    $wpsmart('#main').on('click', '#load-more a', function(event) {   
+    	event.preventDefault();
+    	 	
     	var object = $wpsmart(this);
     	object.text('Loading...');
     	
@@ -60,7 +62,7 @@ $wpsmart(document).bind("pageinit", function() {
     		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
     	});
     	
-    	event.stopImmediatePropagation();
+    	return false;
     });
     
 });

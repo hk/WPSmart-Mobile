@@ -107,9 +107,12 @@ if ( ! function_exists( 'wps_posted_on' ) ) :
  */
 function wps_posted_on( $long_form = true )
 {
-	$meta_text = "Posted " . wps_time_since_post( $long_form, get_post_time() ) . " by ". get_the_author();
+	$display = "none";
 	
-	return $meta_text;
+	if( wps_get_option( 'show_post_author' ) == true )
+		$display = "block";
+
+	return "<span style=\"display:$display\">Posted " . wps_time_since_post( $long_form, get_post_time() ) . " by " . get_the_author() . "</span>";
 }
 endif;
 
@@ -161,8 +164,8 @@ function wps_banner()
 ?>
 	<!-- header -->
 	<header id="masthead" class="site-header" data-role="header" data-position="fixed">
-		<div id="view-search" class="view-search <?php echo  ! wps_get_option( 'enable_search' ) ? "hidden" : null; ?>"><i class="icon-search"></i></div>
-		<div id="view-menu" class="view-menu <?php echo  ! wps_get_option( 'enable_menu' ) ? "hidden" : null; ?>"><i class="icon-reorder"></i></div>
+		<div id="view-search" class="view-search <?php echo  ! wps_get_option( 'enable_search' ) ? "hidden" : null; ?>"><a href="#"><i class="icon-search"></i></a></div>
+		<div id="view-menu" class="view-menu <?php echo  ! wps_get_option( 'enable_menu' ) ? "hidden" : null; ?>"><a href="#"><i class="icon-reorder"></i></a></div>
 		
 		<h1 class="site-title">
 			<a href="<?php bloginfo( 'url' ) ?>" target="_self" rel="home">
@@ -175,8 +178,6 @@ function wps_banner()
 					<img src="<?php echo wps_get_option( 'site_logo' ); ?>"/>
 					
 				<?php endif; ?>
-				
-				<span class="arrow-down"></span>
 			</a>
 		</h1>	
 	</header>

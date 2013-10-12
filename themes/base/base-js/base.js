@@ -1,9 +1,9 @@
 var $wpsmart = jQuery.noConflict();
 
-$wpsmart(document).bind('pageinit', function() {
+$wpsmart(document).ready(function() {
 	
-	$wpsmart('#view_full_site').tap(function(event) {
-		event.stopImmediatePropagation();
+	$wpsmart('#view_full_site').on('click',function(event) {
+		event.preventDefault();
 		
 		document.cookie = 'wpsmart_view_full_site=1';
 		window.location.reload();
@@ -11,16 +11,16 @@ $wpsmart(document).bind('pageinit', function() {
 		return false;
 	});
 
-	$wpsmart('#view-menu').tap(function(event) {
-		event.stopImmediatePropagation();
+	$wpsmart('#view-menu').on('click', function(event) {
+		event.preventDefault();
 		
 		$wpsmart('.menu-bar').toggleClass('shown');
 		
 		return false;
 	});
 	
-	$wpsmart('#view-search').tap(function(event) {
-		event.stopImmediatePropagation();
+	$wpsmart('#view-search').on('click',function(event) {
+		event.preventDefault();
 		
 		$wpsmart('.search-bar').toggleClass('shown');
 		

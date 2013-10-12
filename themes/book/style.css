@@ -131,21 +131,24 @@ input:focus {
 
 .site-title {
 	padding: 0;
-	width: 240px;
+	width: 180px;
 	margin: 0 auto;
 	text-align: center;
 	line-height: 45px;
+	height: 45px;
 }
 
 .site-title a {
 	color: inherit;
 	position: relative;
+	height: 30px;
+	width: 180px;
+	text-align: center;
 }
 
 .site-title img {
 	max-height: 30px;
 	max-width: 180px;
-	vertical-align: middle;
 }
 
 .page-head {
@@ -231,12 +234,6 @@ input:focus {
 
 #page {
 	position: relative;
-}
-
-#main {
-	position: absolute;
-	width: 100%;
-	z-index: 1;
 }
 
 #main-content {
@@ -345,8 +342,14 @@ article .entry-title {
 .entry-preview {
 	text-align: center;
 	display: block;
-	padding: 5px 0;
 	background: #f5f5f5;
+}
+
+.entry-preview a,
+.entry-preview a:visited {
+	padding: 5px 0;
+	display: block;
+	color: #444444;
 }
 
 .top {
