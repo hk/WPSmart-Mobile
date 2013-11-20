@@ -12,7 +12,7 @@ Author URI: http:fwww.wpsmart.com/mobile
 License: GPLv2 or later
 */
 
-define("WPSMART_VERSION", '1.0.2');
+define("WPSMART_VERSION", '1.0.3');
 define("WPSMART_BASE_THEME", dirname(__FILE__) . '/themes/base');
 
 require_once('admin/admin.php');
@@ -162,7 +162,7 @@ class WPSmart
 	function wps_view_mobile_site()
 	{
     ?>
-    	<div style="text-align:center;margin:20px 0;font-size:14px;"><a href="#" onclick='document.cookie="wpsmart_view_full_site=0;expires=' . date("Y-m-d H:i:s", 0) . ';window.location.reload();return false;"'>View moblie optimized site</a></div>
+    	<div style="text-align:center;margin:20px 0;font-size:14px;"><a href="#" onclick='document.cookie="wpsmart_view_full_site=0;expires=<?php echo date("Y-m-d H:i:s", 0) ?>";window.location.href = "<?php echo home_url() ?>";return false;'>View moblie optimized site</a></div>
     <?php
     }
     
@@ -281,8 +281,8 @@ function wps_enqueue_header()
 	
 	wp_enqueue_script( 'jquery' );	
 	wp_enqueue_script( 'comment-reply' );	
-	wp_enqueue_script( 'wps-scripts' );
-	wp_enqueue_script( 'wps-base' );
+	wp_enqueue_script( 'wps-scripts', null, array( 'jquery' ) );
+	wp_enqueue_script( 'wps-base', null, array( 'jquery' ) );
 	
 	wp_register_style( 'base-style', wps_get_base_theme_uri() . '/base-css/base.css?t=' . time() );
 	wp_register_style( 'style', wps_get_theme_uri() . '/style.css?t=' . time() );
@@ -565,8 +565,8 @@ function wps_html_unclean( $string )
 
 function wps_is_in_preview_mode()
 {
-    if( isset( $_GET['wps_preview'] ) && $_GET['wps_preview'] == 1 )
-    	return true;
+	if( isset( $_GET['wps_preview'] ) && $_GET['wps_preview'] == 1 )
+   		return true;
     
     return false;
 }
@@ -648,14 +648,17 @@ function wps_google_adsense_script( $client_id )
 {
 ?>
 	<div class="advertising">
-		<script type="text/javascript"><!--
-		google_ad_client = "<?php echo $client_id ?>";		
-		google_ad_width = 320;
-		google_ad_height = 50;
-		//-->
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:320px;height:50px"
+		     data-ad-client="<?php echo $client_id ?>"
+		     data-ad-slot="2025795687"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
-		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 	</div>
+	
+	
 <?php
 }
 

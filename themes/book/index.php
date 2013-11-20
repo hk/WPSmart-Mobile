@@ -1,19 +1,28 @@
-<?php 
-global $is_ajax;
-$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
+<?php
+if ( wps_get_option('front_page') != '' && ! is_category() && ! is_search() ) :  // if custom front page is set and not a search or category page
+			
+	query_posts('page_id=' . wps_get_option('front_page'));
+	get_template_part( 'front_page' ); 
+	wp_reset_query(); 
 
+else : // else show normal homepage
 
-if( ! $is_ajax ) : get_header(); // if not an ajax request
-?>
-
-<div id="main-content" class="home-content">
-
-	<?php wps_page_head(); ?>
+	global $is_ajax;
+	$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
 	
-<?php endif; ?>
-
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-    	
+	
+	if( ! $is_ajax ) : get_header(); // if not an ajax request
+?>
+	
+	<div class="home-content">
+	
+		<?php wps_page_head(); ?>
+	
+	<?php endif; // end if not an ajax request ?>
+	
+	
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	
     	<article id="post-<?php the_ID(); ?>">
     		<div class="entry-wrapper">
     			<a href="<?php the_permalink(); ?>" target="_self" rel="bookmark" style="display:block;">
@@ -42,30 +51,16 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
     	
     <?php endif; ?>
 
+<?php endif; // end if custom front page is set ?>
 
 
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
-</div><!-- #main-content -->
+</div><!-- .home-content -->
 
 <script type='text/javascript'>
 $wpsmart(document).ready(function() {
-
-   $wpsmart('#main').on('click', '#load-more a', function(event) {
-    	event.preventDefault();
-    	  	
-    	var object = $wpsmart(this);
-    	object.text('Loading...');
-    	
-    	var data = {action: 'wpsmart_load_more'};
-    	    	
-    	$wpsmart.post(object.data('url'), function(response) {
-    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
-    	});
-    	
-    	return false;
-    });
-    
+ 
     $wpsmart('#main').on('click', '.entry-preview a', function(event) {  
     	event.preventDefault();
     	

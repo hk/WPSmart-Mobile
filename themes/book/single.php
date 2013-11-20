@@ -5,7 +5,7 @@ $is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
 if( ! $is_ajax ) { get_header(); }
 ?>
 
-<div id="main-content" class="single-content">
+<div class="single-content">
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -28,6 +28,6 @@ if( ! $is_ajax ) { get_header(); }
 
 	<?php endwhile; ?>
 
-</div><!-- #main-content -->
+</div><!-- .single-content -->
 
 <?php if( ! $is_ajax ) { get_footer(); } ?>

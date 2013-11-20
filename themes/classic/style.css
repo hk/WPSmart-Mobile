@@ -141,13 +141,14 @@ input:focus {
 .site-title a {
 	color: inherit;
 	position: relative;
-	height: 30px;
+	height: 45px;
 	width: 180px;
 	text-align: center;
+	display: block;
 }
 
 .site-title img {
-	max-height: 30px;
+	max-height: 45px;
 	max-width: 180px;
 }
 
@@ -227,6 +228,8 @@ input:focus {
 .advertising {
 	height: 50px;
 	border-bottom: 1px solid #E0E0E0;
+	margin-top: 50px;
+	background: #FFFFFF;
 }
 
 /* Content */
@@ -301,6 +304,10 @@ article .entry-title {
 	font-size: 14px;
 	margin-top: 20px;
 	line-height: 1.5em;
+}
+
+.front-page-content .entry-content {
+	margin-top: 0;
 }
 
 .entry-content p {

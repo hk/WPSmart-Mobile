@@ -2,7 +2,7 @@
 Contributors: wpsmart, _henryk, krutal
 Tags: wpsmart, iphone, mobile, smartphone, android, ipod, ipad, blackberry, windows, theme, mobile-plugin
 Requires at least: 3.0
-Tested up to: 3.6.1
+Tested up to: 3.7.1
 Stable tag: trunk
 License: GPLv3
 
@@ -34,12 +34,21 @@ To customize, go to the *WPSmart* admin page (located in the navigation bar on t
 
 == Changelog ==
 
+= Version 1.0.3 =
+
+* Added: Now you have the ability to set a custom front page!
+* Fixed: Bug where advertising banner wouldn't show
+* Fixed: Bug that was causing the menu not to appear for some users
+* Fixed: 'Tap to load more' on Book and Magazine themes would load the same posts over again
+* Fixed: Revert back to mobile version now works as it should
+* Other various minor styling and bug fixes
+
 = Version 1.0.2 =
 
 * Fixed: Issues with Firefox when customizing the plugin in the WordPress admin panel
 * Fixed: Various Javascript issues, including ones that affected other plugins from functioning properly with WPSmart Mobile
 * Changed: Menu and Search bars are now fixed at the top of the page regardless of scroll position
-* Added: Ability to not display "Posted by…" meta data below post titles
+* Added: Ability to not display "Posted by..." meta data below post titles
 * Added: If you're wp-content/uploads directory is not writeable you will now be notified and will need to fix it before trying to upload a Site Logo in the widget admin panel.
 * Other various minor styling and bug fixes
 

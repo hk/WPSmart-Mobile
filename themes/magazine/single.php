@@ -5,7 +5,7 @@ $is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
 if( ! $is_ajax ) { get_header(); }
 ?>
 
-<div id="main-content" class="single-content">
+<div class="single-content">
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -18,8 +18,7 @@ if( ! $is_ajax ) { get_header(); }
 						<?php if( wps_get_option( 'show_post_categories' ) && $category = wps_get_category() ) : ?><span class="entry-taxonomy"><strong>Category</strong>: <?php echo $category ?></span><?php endif; ?>
 						<?php if( wps_get_option( 'show_post_tags' ) && $tags = wps_get_tags() ) : ?><span class="entry-taxonomy"><strong>Tags</strong>: <?php echo $tags ?></span><?php endif; ?>
 					</div>
-				</div>
-		
+				</div>		
 				<div class="entry-content"><?php the_content(); ?></div>
 			</div>
 		</article>
@@ -28,6 +27,6 @@ if( ! $is_ajax ) { get_header(); }
 
 	<?php endwhile; ?>
 
-</div><!-- #main-content -->
+</div><!-- .single-content -->
 
 <?php if( ! $is_ajax ) { get_footer(); } ?>

@@ -1,22 +1,31 @@
-<?php 
-global $is_ajax;
-$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
+<?php
+if ( wps_get_option('front_page') != '' && ! is_category() && ! is_search() ) :  // if custom front page is set and not a search or category page
+		
+	query_posts('page_id=' . wps_get_option('front_page'));
+	get_template_part( 'front_page' );
+	wp_reset_query(); 
 
+else : // else show normal homepage
 
-if( ! $is_ajax ) : get_header(); // if not an ajax request
+	global $is_ajax;
+	$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
+	
+	
+	if( ! $is_ajax ) : get_header(); // if not an ajax request
 ?>
+	
+	<div class="home-content">
+	
+		<?php wps_page_head(); ?>
+	
+	<?php endif; // end if not an ajax request ?>
 
-<div id="main-content" class="home-content">
-
-	<?php wps_page_head(); ?>
-
-<?php endif; ?>
-
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-    	
+	
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	
     	<?php $post_image_src = wps_get_post_image( $post->ID ); ?>
     	
-    	<article id="post-<?php the_ID(); ?>" class="swipe">
+    	<article id="post-<?php the_ID(); ?>">
     		<div class="entry-wrapper" style="<?php echo $post_image_src == '' || ! wps_get_option( 'show_thumbnails' ) ? "padding-right:0" : null ?>">
     			<a href="<?php the_permalink(); ?>" target="_self" rel="bookmark" style="display:block;">
     				<div class="entry-image" style="<?php if( $post_image_src != '' ): ?>background-image:url(<?php echo $post_image_src ?>);<?php endif; echo ! wps_get_option( 'show_thumbnails' ) ? 'display:none' : null ?>"></div>
@@ -28,11 +37,10 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
     			
 			    <div class="clear"></div>
     		</div>
-    		
-    		<div class="share"><img src="<?php echo get_template_directory_uri(); ?>/images/convo_bubble.png" width="32"/></div>	
 		</article>
 
-    <?php endwhile; endif; ?>
+	<?php endwhile; endif; // while have_posts ?>
+
 
     <?php if(get_next_posts_link() != ''): ?>
     
@@ -43,30 +51,12 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
     	<div class="load-more showing-all-articles">Showing all articles</div>
     	
     <?php endif; ?>
+	    
+<?php endif; // end if custom front page is set ?>
+
 
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
-</div><!-- #main-content -->
-
-<script type='text/javascript'>
-$wpsmart(document).ready(function() {
-
-    $wpsmart('#main').on('click', '#load-more a', function(event) {
-    	event.preventDefault();
-    	     	
-    	var object = $wpsmart(this);
-    	object.text('Loading...');
-    	
-    	var data = {action: 'wpsmart_load_more'};
-    	    	
-    	$wpsmart.post(object.parent().data('url'), function(response) {
-    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
-    	});
-    	
-    	return false;
-    });
-    
-});
-</script>
+</div><!-- .home-content -->
 
 <?php get_footer(); endif; ?>

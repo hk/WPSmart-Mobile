@@ -45,6 +45,21 @@ $wpsmart(document).ready(function() {
 		return false;
     });
     
+    $wpsmart('#main').on('click', '#load-more a', function(event) {
+    	event.preventDefault();
+    	     	
+    	var object = $wpsmart(this);
+    	object.text('Loading...');
+    	
+    	var data = {action: 'wpsmart_load_more'};
+    	    	
+    	$wpsmart.post(object.parent().data('url'), function(response) {
+    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
+    	});
+    	
+    	return false;
+    });
+    
     $wpsmart(function() {
     	if(window.location.search.indexOf(('wps_preview=1')) != -1) {
 			$wpsmart("a").attr('href', function(i, h) {

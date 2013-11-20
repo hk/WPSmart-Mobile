@@ -228,7 +228,7 @@ function wps_footer_links()
 ?>
 	<div id="footer" class="site-footer">
 		<p>Site optimized for mobile devices by <a href="http://www.wpsmart.com/mobile">WPSmart Mobile</a></p>
-		<p><a href="http://wordpress.org/">Proudly powered by WordPress</a> <?php if( ! wps_is_in_preview_mode() ): ?> | <a href="#" id="view_full_site">View Full Site</a><?php endif; ?></p>
+		<p><a href="http://wordpress.org/">Proudly powered by WordPress</a> | <a href="#" id="view_full_site">View Full Site</a></p>
 	</div>
 <?php
 }

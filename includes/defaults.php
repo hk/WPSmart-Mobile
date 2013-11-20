@@ -28,6 +28,7 @@ $wps_default_options = array(
 	'pin_header' => true,
 	'pin_ad' => false,
 	'menu_links' => array(),
+	'front_page' => '',
 	'touch_icon' => array( '57' => '/wp-content/plugins/wpsmart-mobile/themes/base/base-images/touch_icon_57.png', '114' => '/wp-content/plugins/wpsmart-mobile/themes/base/base-images/touch_icon_114.png' )
 );
 

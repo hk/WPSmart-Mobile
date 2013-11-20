@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="wps-admin-section-hint">
-				<span>Optimal logo size is 360px by 60px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></span>
+				<span>Optimal logo size is 360px by 90px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></span>
 				<span>Your upload directory is <strong><?php echo wps_upload_base_dir() ?></strong></span>	
 			</div>
 		
@@ -61,6 +61,17 @@
 			<div class="wps-admin-input-checkbox">
 				<input type="hidden" name="enable_comments" value="0"/>
 				<input type="checkbox" name="enable_comments" id="enable_comments" value="1" <?php echo wps_checkbox_text( 'enable_comments' ) ?>/><label for="enable_comments">Enable commenting in posts</label>
+			</div>
+		</div>
+		<div class="wps-admin-section-input-group">
+			<div class="wps-admin-input">
+				<label>Custom front page</label>
+				<select name="front_page" id="front_page">
+					<option value="">None</option>
+					<?php foreach( wps_get_pages() as $wps_page ) : ?>
+						<option value="<?php echo $wps_page['page_id']; ?>" <?php echo wps_get_option( 'front_page' ) == $wps_page['page_id'] ? 'selected="selected"' : null ?>><?php echo $wps_page['page_title']; ?></option>
+					<?php endforeach; ?>
+				</select>
 			</div>
 		</div>
 		<div class="clear"></div>

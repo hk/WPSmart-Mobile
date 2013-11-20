@@ -1,17 +1,26 @@
-<?php 
-global $is_ajax;
-$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
+<?php
+if ( wps_get_option('front_page') != '' && ! is_category() && ! is_search() ) :  // if custom front page is set and not a search or category page
+	
+	query_posts('page_id=' . wps_get_option('front_page'));
+	get_template_part( 'front_page' );  
+	wp_reset_query(); 
 
+else : // else show normal homepage
 
-if( ! $is_ajax ) : get_header(); // if not an ajax request
+	global $is_ajax;
+	$is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
+	
+	
+	if( ! $is_ajax ) : get_header(); // if not an ajax request
 ?>
-
-<div id="main-content" class="home-content">
-
-	<?php wps_page_head(); ?>
-
-<?php endif; ?>
-
+	
+	<div class="home-content">
+	
+		<?php wps_page_head(); ?>
+	
+	<?php endif; // end if not an ajax request ?>
+	
+	    
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     	
     	<?php $post_image_src = wps_get_post_image( $post->ID, 'large' ); ?>
@@ -31,10 +40,11 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
     		</div>
 		</article>
 
-    <?php endwhile; endif; ?>
-
-    <?php if(get_next_posts_link() != ''): ?>
+    <?php endwhile; endif; // while have_posts ?>
     
+    
+    <?php if(get_next_posts_link() != ''): ?>
+
     	<div id="load-more" class="load-more" data-url="<?php echo get_next_posts_page_link(); ?>"><a href="#">Tap to load more articles</a></div>
     	
     <?php else: ?>
@@ -42,30 +52,12 @@ if( ! $is_ajax ) : get_header(); // if not an ajax request
     	<div class="load-more showing-all-articles">Showing all articles</div>
     	
     <?php endif; ?>
+	    
+<?php endif; // end if custom front page is set ?>
+
 
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
-</div><!-- #main-content -->
-
-<script type='text/javascript'>
-$wpsmart(document).ready(function() {
-
-    $wpsmart('#main').on('click', '#load-more a', function(event) {   
-    	event.preventDefault();
-    	 	
-    	var object = $wpsmart(this);
-    	object.text('Loading...');
-    	
-    	var data = {action: 'wpsmart_load_more'};
-    	    	
-    	$wpsmart.post(object.data('url'), function(response) {
-    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
-    	});
-    	
-    	return false;
-    });
-    
-});
-</script>
+</div><!-- .home-content -->
 
 <?php get_footer(); endif; ?>
