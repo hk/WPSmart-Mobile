@@ -6,7 +6,7 @@
 Plugin Name: WPSmart Mobile
 Plugin URI: http://www.wpsmart.com
 Description: Present your Wordpress site in a beautiful theme optimized for touch-based smartphones
-Version: 1.0.2
+Version: 1.0.3
 Author: WPSmart
 Author URI: http:fwww.wpsmart.com/mobile
 License: GPLv2 or later
