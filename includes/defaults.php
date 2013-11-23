@@ -46,11 +46,13 @@ $wps_fonts = array(
 // device user agents
 global $wps_user_agents;
 $wps_user_agents = array(
-	'iPhone',
-	'iPod',
-	'Android',
-	'Windows Phone',
-	'Windows Mobile',
-	'BlackBerry'
+	'iphone',
+	'ipod',
+	'android',
+	'mobile safari',
+	'mobile',
+	'windows phone',
+	'windows mobile',
+	'blackberry'
 );
 ?>

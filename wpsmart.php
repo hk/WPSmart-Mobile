@@ -6,13 +6,13 @@
 Plugin Name: WPSmart Mobile
 Plugin URI: http://www.wpsmart.com
 Description: Present your Wordpress site in a beautiful theme optimized for touch-based smartphones
-Version: 1.0.3
+Version: 1.0.3.1
 Author: WPSmart
 Author URI: http:fwww.wpsmart.com/mobile
 License: GPLv2 or later
 */
 
-define("WPSMART_VERSION", '1.0.3');
+define("WPSMART_VERSION", '1.0.3.1');
 define("WPSMART_BASE_THEME", dirname(__FILE__) . '/themes/base');
 
 require_once('admin/admin.php');
@@ -131,9 +131,9 @@ class WPSmart
 				$this->wps_show_mobile = false;
 				add_action( 'wp_footer', array( &$this, 'wps_view_mobile_site' ) );
 			} else {		
-				$server_user_agent = $_SERVER['HTTP_USER_AGENT'];
+				$server_user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 										
-				foreach( $wps_user_agents as $user_agent ) {
+				foreach( $wps_user_agents as $user_agent ) {				
 					if( preg_match( "/$user_agent/", $server_user_agent) ) {
 						$this->wps_show_mobile = true;
 						break;
