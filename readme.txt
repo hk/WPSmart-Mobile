@@ -34,6 +34,11 @@ To customize, go to the *WPSmart* admin page (located in the navigation bar on t
 
 == Changelog ==
 
+= Version 1.0.3.1 =
+
+* Leftover bug fixes from previous release
+* Added: Additional user-agents added
+
 = Version 1.0.3 =
 
 * Added: Now you have the ability to set a custom front page!
