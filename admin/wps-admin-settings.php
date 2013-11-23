@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="wps-admin-section-hint">
-				<span>Optimal logo size is 360px by 90px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></span>
+				<span>Optimal logo size is 360px by 60px for retina displays. <?php if( wps_get_option('site_logo') != '' ): ?><a href="#" class="wps-remove-logo" id="wps-remove-logo">Remove current logo</a><?php endif; ?></span>
 				<span>Your upload directory is <strong><?php echo wps_upload_base_dir() ?></strong></span>	
 			</div>
 		
