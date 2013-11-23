@@ -276,13 +276,13 @@ endif; // if ( ! class_exists( 'WPSmart' ) ) :
 function wps_enqueue_header()
 {
 
-	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time() );
-	wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time() );
+	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time(), array( 'jquery' ) );
+	wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time(), array( 'jquery' ) );
 	
 	wp_enqueue_script( 'jquery' );	
 	wp_enqueue_script( 'comment-reply' );	
-	wp_enqueue_script( 'wps-scripts', null, array( 'jquery' ) );
-	wp_enqueue_script( 'wps-base', null, array( 'jquery' ) );
+	wp_enqueue_script( 'wps-scripts' );
+	wp_enqueue_script( 'wps-base' );
 	
 	wp_register_style( 'base-style', wps_get_base_theme_uri() . '/base-css/base.css?t=' . time() );
 	wp_register_style( 'style', wps_get_theme_uri() . '/style.css?t=' . time() );
@@ -651,8 +651,7 @@ function wps_google_adsense_script( $client_id )
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<ins class="adsbygoogle"
 		     style="display:inline-block;width:320px;height:50px"
-		     data-ad-client="<?php echo $client_id ?>"
-		     data-ad-slot="2025795687"></ins>
+		     data-ad-client="<?php echo $client_id ?>"></ins>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
