@@ -19,9 +19,25 @@ else : // else show normal homepage
 		<?php wps_page_head(); ?>
 	
 	<?php endif; // end if not an ajax request ?>
+
+<?php
+// ads code
+//-------------
+$count = 0;
+//-------------
+// endads code
+?>
 	
 	
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $count++; ?>
+	
+		<?php
+		// ads code
+		//-------------
+		if($count == 3){echo wps_ad();}
+    	//-------------
+		// endads code
+    	?>
 	
     	<article id="post-<?php the_ID(); ?>">
     		<div class="entry-wrapper">

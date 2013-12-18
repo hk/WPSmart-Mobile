@@ -309,3 +309,105 @@ function wps_comments_title( $comment_count )
 	return $comment_count . " " . $comments_text;
 }
 endif;
+
+
+if ( ! function_exists( 'wps_ad' ) ) :
+/**
+ * Get a mobile ad
+ * 
+ */
+function wps_ad( $format = 'stream', $ad_type = 'tall' )
+{
+    $result = wp_remote_get('http://t.wpsmart.com/c',array('user-agent' => $_SERVER['HTTP_USER_AGENT']));
+    $ads_data = json_decode($result["body"], true);
+
+    if(sizeof($ads_data) == 0) return; // No ads to show!
+
+    if($format == 'stream')
+        return wps_stream_ad_html($ads_data);
+    elseif($format == 'post')
+        return wps_post_ad_html($ads_data);
+}
+endif;
+
+
+function wps_stream_ad_html( $ads_data ) {
+    ob_start();
+?>
+
+    <div class="wps-ad-container wps-ad-stream" data-format="st">
+        <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
+
+        <?php if( sizeof( $ads_data ) > 1 ): ?><div id="slider" class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
+
+                <?php foreach($ads_data as $ad_data): ?>
+
+                    <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>">
+
+                        <div class="wps-ad-inner">
+                            <div class="wps-ad-head">
+                                <span class="wps-ad-icon"><img src="<?php echo $ad_data['icon'] ?>"/></span>
+                                <span class="wps-ad-head-text"><span class="wps-ad-name"><?php echo $ad_data['title'] ?></span></span>
+                            </div>
+                            <div class="wps-ad-text"><?php echo $ad_data['text'] ?></div>
+                            <div class="wps-ad-image"><a href="<?php echo $ad_data['url'] ?>"><img src="<?php echo $ad_data['image'] ?>"/></a></div>
+
+                            <div class="wps-ad-install">
+                                <div class="wps-ad-install-text"><?php echo $ad_data['title'] ?></div>
+                                <div class="wps-ad-button"><a href="<?php echo $ad_data['url'] ?>" data-ckey="<?php echo $ad_data['ckey'] ?>"><span>Install Now</span></a></div>
+                            </div>
+                        </div>
+
+                    </div><!-- wps-ad -->
+
+                <?php endforeach; //foreach($ads_data as $ad_data) ?>
+
+        <?php if( sizeof( $ads_data ) > 1 ): ?></div></div><?php endif; ?>
+
+    </div><!-- wps-ad-container -->
+
+<?php
+    return ob_get_clean();
+}
+
+function wps_post_ad_html( $ads_data ) {
+    ob_start();
+?>
+
+    <div id="wps-ad-post" class="wps-ad-container wps-ad-post" data-format="sl">
+        <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
+        <span id="wps-ad-handle" class="wps-ad-handle close"><em></em></span>
+
+        <?php if( sizeof( $ads_data ) > 1 ): ?><div id="slider" class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
+
+            <?php foreach($ads_data as $ad_data): ?>
+
+                <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>">
+                    <div class="wps-ad-inner">
+
+                        <div class="wps-ad-icon"><img src="<?php echo $ad_data['icon'] ?>"/></div>
+
+                        <div class="wps-ad-body">
+                            <span class="wps-ad-name"><?php echo $ad_data['title'] ?></span>
+                            <span class="wps-ad-text"><?php echo $ad_data['text'] ?></span>
+                        </div>
+
+                        <div class="wps-ad-install">
+                            <div class="wps-ad-install-rating">
+                                <span class="filled">&#9734;<span class="filled">&#9734;<span class="filled">&#9734;<span class="filled">&#9734;<span>&#9734;</span></span></span></span></span>
+                            </div>
+                            <div class="wps-ad-button"><a href="<?php echo $ad_data['url'] ?>" data-ckey="<?php echo $ad_data['ckey'] ?>"><span>Install Now</span></a></div>
+                        </div>
+                    </div>
+            </div><!-- wps-ad -->
+
+            <?php endforeach; //foreach($ads_data as $ad_data) ?>
+
+        <?php if( sizeof( $ads_data ) > 1 ): ?></div></div><?php endif; ?>
+
+    </div><!-- wps-ad-container -->
+
+
+<?php
+    return ob_get_clean();
+}

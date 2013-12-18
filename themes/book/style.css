@@ -246,10 +246,14 @@ input:focus {
 article {
 	position: relative;
 	z-index: 3;
-	padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    /*
+
+	margin: 0 10px;
+	*/
 }
 
-.entry-content,
 .entry-header {
 	overflow: hidden;
 	vertical-align: top;
@@ -257,6 +261,10 @@ article {
 
 .entry-header {
 	margin: 10px 10px 15px 10px;
+}
+
+.entry-content {
+    vertical-align: top;
 }
 
 article .entry-image {
@@ -336,7 +344,7 @@ article .entry-title {
 .entry-wrapper {
 	position: relative;
 	z-index: 1;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	background: #FFFFFF;
 	border: 1px solid #ddd;
 }

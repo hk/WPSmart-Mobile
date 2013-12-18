@@ -3,6 +3,7 @@
 	width: 100%;
 	z-index: 1;
 	top: 50px;
+    overflow: hidden;
 }
 
 /* Header menu & search dropdowns */
@@ -114,6 +115,9 @@
 	font-size: 12px;
 }
 
+.site-header {
+    font-family: 'Varela Round', sans-serif;
+}
 
 /* Alert messages */
 
@@ -347,4 +351,416 @@
 	#addToHomeScreen .addToHomeShare {
 		background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAeCAQAAADu6HTYAAADPElEQVR4Xq3TX2gcRRzA8e/M7mVv2+TSNpc/TZtrY6jUGqgaSAmEChKLrYK0YH0RFC2CSCkEfCghiKU04J8qNigq6os+iQV98MHWFwVBrQQRWs21lBw5cw3NNb1/udu72RGG5Y77IzXW77D7sAwf5scyYoL6BGXSDKFZwaGpLvIUaeoCkvX1MmsM0Ny6oRSQYOLuIS+YZOpfQdqslpUxcZrzTVAz4qPwW2O3CeIwC/RSzeY6Ow1QhUrkr+YOWfEKDkEP8Rij7CHKJmrFSDHBdwGEE5wiGChPN+PnT8VdRtEIl1d4gRj/1EVe5ZSBKGh8iqQpo/Fo5+3C/gz0MYg4zgwbqday1/Q4B8BGQ45d/Hi54lakCrU5obOcidJpu1+Lg9whjabyaOYLnrIBFFaRD+xe2ybMDWY66GmP/WA9cGfGp0CWhy0wkMN8inepFiH2rV1j0NQSNQbFLRQnS8/8YSDBBpadfv4CYDub2fmeHDNAsL1MBWUel0iA+Xik6eHcyvD3vAMSU1TGuA/YRS+dD7ovCQN43GKRFCU20Kd3V/avDVVyAZ5niTEuLA5/zBGWg9EEEhfJKN200Tat8CmRAQb9+wv7soPlHt2tQorsz1uPbr0HTY4sJwrH47zJZwABBAKLMBoQXepwgTwdHCo+fXMkQ4lrxEmQ5AaXipPqDY9V2vn09tgvTPI71EEGYxM+/uMJLJ4svpgaWGKOi/xKgmqLSUGSUd5f2vIVJ/CgBaTIUsZ7ZBsn0+NzfMOXLFCXQyTcybN6ep5ZZgUOHn7jpfUpsZshdugPGf+E5zjbyHTSRyQ8xfRPPM/s63RHeuknSoT22mjmmnAOIMkUZ6D1xSfPPAfd1WFKM3sO2CMaHx8M1NjnXKHaAGGkOW0C02WeYHUz4qMtx+w5gUDS8NckYe5lHsMYwCZEPyEEmjLDZFmAS7CDviMdxyTkMNVBKEmYLvbiQQBIBBbCQG04bGQvFWz6CfsCQLWCigILFwcfkGYBiOpbYuOizTAyYyDdCtrGaRG1LCkIgMYEFhI0WqQZoSlbGRyHKe4qOx7iv2bVQW9dp4dlM/x6kmwnWQcd/Q3FCqwTEiT5s+6D5v/pb0SSHyg7uhMWAAAAAElFTkSuQmCC);
 	}
+}
+
+
+
+
+/**
+ *
+ * Mobile ads
+ *
+ */
+
+.wps-ad-container {
+    width: 100%;
+    /*min-height: 303px;*/
+    position: relative;
+    background: #fff;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin: 5px 0;
+    z-index: 999;
+}
+
+.wps-ad-container .wps-ad-sponsored {
+    line-height: 1em;
+    font-size: 12px;
+    color: #999999;
+    padding: 10px 0 0 5px;
+    display: block;
+}
+
+.wps-ad-post .wps-ad-sponsored {
+    padding: 12px 0 0 5px;
+}
+
+.wps-ad-container.wps-ad-post {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    box-shadow: 0px -6px 20px 2px rgba(0,0,0,.3);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    -webkit-transition-duration: 500ms;
+    -webkit-transform: translate3d(0px, 250px, 0px);
+    padding-top: 4px;
+    height: 158px!important;
+    padding: 0 15px 0 10px;
+    overflow: hidden;
+}
+
+.wps-ad-post .wps-ad-handle {
+    width: 100%;
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    margin-left: -7px;
+}
+
+.wps-ad-handle em {
+    width: 15px;
+    height: 8px;
+    background-image: url('https://rbme.s3.amazonaws.com/pad/arrow.png');
+    background-size: 100%;
+    display: block;
+    opacity: 0.6;
+}
+
+.wps-ad-post.open {
+    /*visibility: visible;*/
+    bottom: 0;
+}
+
+.wps-ad-post.close {
+    bottom: -100%!important;
+    /*visibility: hidden;*/
+}
+
+.wps-ad-handle.close {
+    background-position: 0 0;
+}
+
+.wps-ad-handle.open {
+    background-position: 0 -12px;
+}
+
+.wps-ad-post .wps-ad {
+    /*width: 295px!important;*/
+    height: 130px!important;
+    padding: 6px 3px 6px 3px;
+}
+.wps-ad-stream .wps-ad {
+    height: 301px!important;
+    padding: 12px 3px 12px 3px;
+    background: transparent;
+}
+
+.wps-ad {
+    width: 100%;
+    max-width: 360px;
+    display: block;
+    box-sizing: border-box;
+    /*font-family: "Helvetica Neue";*/
+    color: #444;
+    -webkit-font-smoothing: antialiased;
+    -moz-background-clip: padding;     /* Firefox 3.6 */
+    -webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+    background-clip: padding-box;
+}
+
+.wps-ad a,
+.wps-ad a:hover {
+    text-decoration: none;
+}
+
+.wps-ad .wps-ad-post {
+    margin: 20px 0;
+    border: 1px solid #eee;
+}
+
+.wps-ad .wps-ad-inner {
+    box-shadow: 0px 2px 5px -2px rgba(0,0,0,.3);
+    background: #fff;
+    border-radius: 4px;
+    background: #fafafc;
+    border: 1px solid #d5d5d5;
+    /*height: 100%;*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+.wps-ad-post .wps-ad-inner {
+    height: 120px;
+}
+
+.wps-ad .wps-ad-image {
+    height: 140px;
+    overflow: hidden;
+}
+
+.wps-ad .wps-ad-image img {
+    width: 100%;
+}
+
+.wps-ad .wps-ad-head {
+    padding: 10px 12px;
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.wps-ad-post .wps-ad-body {
+    padding: 10px 10px 10px 75px;
+}
+
+.wps-ad-head .wps-ad-icon {
+    position: absolute;
+    left: 10px;
+}
+
+.wps-ad-head .wps-ad-icon img {
+    width: 30px;
+}
+
+.wps-ad-post .wps-ad-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.wps-ad-post .wps-ad-icon img {
+    width: 55px;
+}
+
+.wps-ad .wps-ad-head-text {
+    padding-left: 34px;
+    display: inline-block;
+}
+
+.wps-ad .wps-ad-head-text span {
+    display: block;
+}
+
+.wps-ad .wps-ad-head-text .wps-ad-name {
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 19px;
+}
+
+.wps-ad-post .wps-ad-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-size: 18px;
+    display: block;
+}
+
+.wps-ad .wps-ad-text {
+    padding: 0 12px 8px;
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 4px;
+}
+
+.wps-ad-post .wps-ad-text {
+    padding: 0;
+    display: block;
+    margin-bottom: 0;
+}
+
+.wps-ad .wps-ad-install {
+    border-top: 1px solid #eee;
+    background: #fafafa;
+    margin-top: 0;
+    min-height: 40px;
+    position: relative;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.wps-ad-post .wps-ad-install-rating {
+    padding: 0 0 0 10px;
+    float: left;
+    line-height: 40px;
+}
+
+.wps-ad-install-rating span {
+    font-size: 18px;
+    color: #fed37f;
+    cursor: pointer;
+}
+
+.wps-ad-install-rating span.filled:before {
+    content: "\2605";
+    position: absolute;
+    color: #fed37f;
+}
+
+.wps-ad .wps-ad-install-text {
+    padding: 8px 95px 8px 12px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.wps-ad-stream .wps-ad-button {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+
+.wps-ad-post .wps-ad-button {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+}
+
+.wps-ad .wps-ad-button a {
+    display: block;
+
+}
+
+.wps-ad .wps-ad-button span {
+    display: block;
+    padding: 0;
+    border: 1px solid #c5c6c8;
+    font-weight: bold;
+    font-size: 14px;
+    background-image: -webkit-linear-gradient(top, #fafafc, #e5e6e8);
+    background-color: #D54E21;
+    color: #444;
+    border-radius: 3px;
+    height: 26px;
+    line-height: 26px;
+    width: 80px;
+    font-size: 12px;
+    -webkit-box-shadow: 0 2px 3px -2px rgba(0,0,0,.2);
+    cursor: pointer;
+    text-align: center;
+}
+
+/*
+ Swipe CSS
+ */
+.swipe {
+    /*overflow: hidden;*/
+    visibility: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: absolute;
+    left: -25px;
+    padding-left: 25px;
+}
+.swipe-wrap > div {
+    float:left;
+    position: relative;
+}
+
+/* ===============================================================
+Basic Swiper Styles
+================================================================*/
+
+.swiper-container {
+    margin:0 auto;
+    position:relative;
+    /*overflow:hidden;*/
+    -webkit-backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    -o-backface-visibility:hidden;
+    backface-visibility:hidden;
+    /* Fix of Webkit flickering */
+    z-index:1;
+}
+.swiper-wrapper {
+    position:absolute;
+    width:100%;
+    -webkit-transition-property:-webkit-transform, left, top;
+    -webkit-transition-duration:0s;
+    -webkit-transform:translate3d(0px,0,0);
+    -webkit-transition-timing-function:ease;
+
+    -moz-transition-property:-moz-transform, left, top;
+    -moz-transition-duration:0s;
+    -moz-transform:translate3d(0px,0,0);
+    -moz-transition-timing-function:ease;
+
+    -o-transition-property:-o-transform, left, top;
+    -o-transition-duration:0s;
+    -o-transform:translate3d(0px,0,0);
+    -o-transition-timing-function:ease;
+    -o-transform:translate(0px,0px);
+
+    -ms-transition-property:-ms-transform, left, top;
+    -ms-transition-duration:0s;
+    -ms-transform:translate3d(0px,0,0);
+    -ms-transition-timing-function:ease;
+
+    transition-property:transform, left, top;
+    transition-duration:0s;
+    transform:translate3d(0px,0,0);
+    transition-timing-function:ease;
+}
+.swiper-free-mode > .swiper-wrapper {
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -ms-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    margin: 0 auto;
+}
+.swiper-slide {
+    float: left;
+}
+
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+    -ms-touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+    -ms-touch-action: pan-x;
+}
+
+/* ===============================================================
+Your custom styles, here you need to specify container's and slide's
+sizes, pagination, etc.
+================================================================*/
+.swiper-container {
+    /* Specify Swiper's Size: */
+
+    /*width:200px;
+    height: 100px;*/
+}
+.swiper-slide {
+    /* Specify Slides's Size: */
+
+    /*width: 100%;
+    height: 100%;*/
+}
+.swiper-slide-active {
+    /* Specific active slide styling: */
+
+}
+.swiper-slide-visible {
+    /* Specific visible slide styling: */
+
+}
+/* ===============================================================
+Pagination Styles
+================================================================*/
+.swiper-pagination-switch {
+    /* Stylize pagination button: */
+
+}
+.swiper-active-switch {
+    /* Specific active button style: */
+
+}
+.swiper-visible-switch {
+    /* Specific visible button style: */
+
+}
+
+
+.wps-ad-stream .swiper-container, .wps-ad-stream .swiper-slide {
+    width: 100%;
+    height: 301px;
+}
+
+.wps-ad-post .swiper-container,.wps-ad-post .swiper-slide {
+    width: 100%;
+    height: 135px;
 }

@@ -9,9 +9,14 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<link rel="apple-touch-icon-precomposed" href="<?php echo get_bloginfo( 'url' ) . wps_get_option( 'touch_icon', '57' ); ?>">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_bloginfo( 'url' ) . wps_get_option( 'touch_icon', '114' ); ?>">
-	<title><?php echo wps_get_option( 'site_title' ) ?></title>
-	
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+    <title><?php echo wps_get_option( 'site_title' ) ?></title>
+
 	<script type="text/javascript">
+    /*
 	var addToHomeConfig = {
 		animationIn: 'bubble',
 		animationOut: 'drop',
@@ -19,7 +24,7 @@
 		expire:0,
 		returningVisitor: true,
 		touchIcon:true,
-	};
+	};*/
 	</script>
 	
 	<?php wps_enqueue_header(); wp_head(); ?>

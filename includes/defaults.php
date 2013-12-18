@@ -40,7 +40,8 @@ $wps_fonts = array(
 	'Georgia', 
 	'Helvetica',
 	'Times New Roman', 
-	'Verdana'
+	'Verdana',
+    'Open Sans'
 );
 
 // device user agents

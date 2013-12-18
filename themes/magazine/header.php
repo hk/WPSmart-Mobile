@@ -21,5 +21,3 @@ body {
 	
 	<div id="main" data-role="content">
 	
-		<div id="main-content">
-	

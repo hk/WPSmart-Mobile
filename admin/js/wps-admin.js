@@ -414,6 +414,7 @@ function wps_show_page( page ) {
 
 function wps_close_preview_modal() {
 	$wpsmart('#wps-admin-preview').css('visibility', 'hidden');
+    //$wpsmart('#wps-admin-preview iframe').css('display', 'none');
 	$wpsmart('#overlay').remove();
 	
 	var wps_preview_frame = $wpsmart('#wps-admin-preview-frame');
@@ -444,4 +445,5 @@ function wps_show_preview_modal() {
 
 	$wpsmart('body').append('<div id="overlay"></div>');
 	$wpsmart('#wps-admin-preview').css('visibility', 'visible');
+    //$wpsmart('#wps-admin-preview iframe').css('display', 'block');
 }

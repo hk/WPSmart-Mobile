@@ -609,6 +609,7 @@ button.wps-save {
 	overflow-x: hidden;
 	right: 0;
 	position: absolute;
+    display: none;
 }
 
 #wps-device.iphone iframe {

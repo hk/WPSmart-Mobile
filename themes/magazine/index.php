@@ -13,15 +13,33 @@ else : // else show normal homepage
 	
 	if( ! $is_ajax ) : get_header(); // if not an ajax request
 ?>
-	
+
+<div id="main-content">
+
 	<div class="home-content">
 	
 		<?php wps_page_head(); ?>
 	
 	<?php endif; // end if not an ajax request ?>
-	
-	    
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+<?php
+// ads code
+//-------------
+    $count = 0;
+//-------------
+// endads code
+?>
+
+
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $count++; ?>
+
+        <?php
+        // ads code
+        //-------------
+        if($count == 3){echo wps_ad();}
+        //-------------
+        // endads code
+        ?>
     	
     	<?php $post_image_src = wps_get_post_image( $post->ID, 'large' ); ?>
     	
@@ -59,5 +77,7 @@ else : // else show normal homepage
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
 </div><!-- .home-content -->
+
+    </div><!-- #main-content -->
 
 <?php get_footer(); endif; ?>

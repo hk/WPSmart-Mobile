@@ -8,7 +8,7 @@ Plugin URI: http://www.wpsmart.com
 Description: Present your Wordpress site in a beautiful theme optimized for touch-based smartphones
 Version: 1.0.3
 Author: WPSmart
-Author URI: http:fwww.wpsmart.com/mobile
+Author URI: http://www.wpsmart.com/mobile
 License: GPLv2 or later
 */
 
@@ -275,14 +275,15 @@ endif; // if ( ! class_exists( 'WPSmart' ) ) :
 
 function wps_enqueue_header()
 {
-
-	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time(), array( 'jquery' ) );
-	wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time(), array( 'jquery' ) );
+    wp_register_script( 'wps-utils', wps_get_base_theme_uri() . '/base-js/utils.js?t=' . time(), array( 'jquery' ) );
+   	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time(), array( 'jquery' ) );
+    wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time(), array( 'jquery' ) );
 	
 	wp_enqueue_script( 'jquery' );	
-	wp_enqueue_script( 'comment-reply' );	
+	wp_enqueue_script( 'comment-reply' );
+    wp_enqueue_script( 'wps-utils' );
 	wp_enqueue_script( 'wps-scripts' );
-	wp_enqueue_script( 'wps-base' );
+    wp_enqueue_script( 'wps-base' );
 	
 	wp_register_style( 'base-style', wps_get_base_theme_uri() . '/base-css/base.css?t=' . time() );
 	wp_register_style( 'style', wps_get_theme_uri() . '/style.css?t=' . time() );
@@ -434,7 +435,7 @@ function wps_get_menu_callback()
 	$menu_id = $_POST['menu_id'];
 	$i = 0;
 	
-	foreach( wp_get_nav_menu_items( $menu_id ) as $menu_item ) {
+	foreach( wp_get_nav_menu_items( $menu_id ) as $menu_item ) :
 ?>
 		<li id="" class="menu-item menu-item-depth-0 menu-item-page menu-item-edit-inactive">
 			<dl class="menu-item-bar">
@@ -464,7 +465,7 @@ function wps_get_menu_callback()
 	
 <?php
 		$i++;
-	}
+	endforeach;
 	
 	die();
 }

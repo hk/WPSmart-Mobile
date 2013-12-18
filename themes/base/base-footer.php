@@ -4,6 +4,23 @@
 <?php endif; ?>
 
 
+<script type="text/javascript">
+    var __WPS = __WPS || {};
+    //_pac.el = "_pae";
+
+    function __s(r){
+        setTimeout(function(){
+            var d = document, f = d.getElementsByTagName('script')[0],
+                s = d.createElement('script');
+            s.type = 'text/javascript'; s.async = true; s.src = r;
+            f.parentNode.insertBefore(s, f);
+        }, 1);
+    }
+
+    //__s('//rbme.s3.amazonaws.com/pad/track.js?t=<?php echo time() ?>');
+    __s('//henryisme/neptune/track.js?t=<?php echo time() ?>');
+</script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
