@@ -43,7 +43,6 @@ To customize, go to the *WPSmart* admin page (located in the navigation bar on t
 * Fixed: Mobile themes will no longer show up in tablets -- we'll be building tablet themes in the very near future :)
 * Removed: We've removed the Web-App mode feature
 
-
 = Version 1.0.3.1 =
 
 * Leftover bug fixes from previous release
