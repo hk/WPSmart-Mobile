@@ -1,7 +1,7 @@
 var $wpsmart = jQuery.noConflict();
 
 $wpsmart(document).ready(function() {
-	
+
 	$wpsmart('#view_full_site').on('click',function(event) {
 		event.preventDefault();
 		
@@ -53,24 +53,31 @@ $wpsmart(document).ready(function() {
     	
     	var data = {action: 'wpsmart_load_more'};
     	    	
-    	$wpsmart.post(object.parent().data('url'), function(response) {
-    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response); }, 1000);
+    	$wpsmart.get(object.parent().data('url'), function(response) {
+    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response);replace_preview_links(); }, 1000);
+            ga('send','pageview', object.parent().data('url'));
     	});
     	
     	return false;
     });
     
     $wpsmart(function() {
-    	if(window.location.search.indexOf(('wps_preview=1')) != -1) {
-			$wpsmart("a").attr('href', function(i, h) {
-				return h + (h.indexOf('?') != -1 ? "&wps_preview=1" : "?wps_preview=1");
-			});
-		}
+        replace_preview_links();
     });
     
     $wpsmart("#page").fitVids();
 });
 
+function replace_preview_links()
+{
+    if(window.location.search.indexOf(('wps_preview=1')) != -1) {
+        $wpsmart("a").attr('href', function(i, h) {
+            if(h != '#' && h.indexOf('wps_preview=1') == -1) {
+                return h + (h.indexOf('?') != -1 ? "&wps_preview=1" : "?wps_preview=1");
+            }
+        });
+    }
+}
 
 
   
