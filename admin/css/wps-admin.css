@@ -58,7 +58,6 @@
 	right: 20px;
 	top: 30px;
 	font-size: 12px;
-	
 }
 
 .wps-admin-version-notification .latest {
@@ -129,6 +128,8 @@
 	border-left: 1px solid #DDDDDD;
 	border-right: 1px solid #DDDDDD;
 	border-bottom: 1px solid #DDDDDD;
+    background: #fff;
+    font-size: 12px;
 }
 
 .wps-admin-content {
@@ -149,7 +150,7 @@
 	margin-right: 20px;
 	padding-right: 20px;
 	min-height: 581px;
-	border-right: 1px solid #ddd; 
+	border-right: 1px solid #ddd;
 }
 
 .wps-admin-left-column .inside {
@@ -408,7 +409,7 @@ button.wps-save {
 }
 
 .wps-admin-save-bar button.disabled {
-	
+
 }
 
 .wps-admin-saved {
@@ -520,7 +521,7 @@ button.wps-save {
 }
 .wps-admin-theme h4 {
 	font-size: 14px;
-	margin: 15px 0 0;	
+	margin: 15px 0 0;
 }
 .wps-admin-theme .action-links {
 	margin: 0;
@@ -647,6 +648,7 @@ button.wps-save {
 	padding: 10px;
 	margin: 25px 0 0 0;
 	font-size: 11px;
+    background: #fff;
 }
 
 .wps-admin-footer .wps-version {

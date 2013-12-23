@@ -10,6 +10,7 @@ $wps_default_options = array(
 	'analytics_type' => 'none',
 	'advertising_type' => 'none',
 	'show_thumbnails' => true,
+    'show_featured_image_in_post' => false,
 	'show_post_author' => true,
 	'show_post_tags' => false,
 	'show_post_categories' => false,
@@ -29,7 +30,6 @@ $wps_default_options = array(
 	'pin_ad' => false,
 	'menu_links' => array(),
 	'front_page' => '',
-	'touch_icon' => array( '57' => '/wp-content/plugins/wpsmart-mobile/themes/base/base-images/touch_icon_57.png', '114' => '/wp-content/plugins/wpsmart-mobile/themes/base/base-images/touch_icon_114.png' )
 );
 
 // fonts available
@@ -49,8 +49,6 @@ $wps_user_agents = array(
 	'iphone',
 	'ipod',
 	'android',
-	'mobile safari',
-	'mobile',
 	'windows phone',
 	'windows mobile',
 	'blackberry'
