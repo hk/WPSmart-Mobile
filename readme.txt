@@ -2,7 +2,7 @@
 Contributors: wpsmart, _henryk, krutal
 Tags: wpsmart, iphone, mobile, smartphone, android, ipod, ipad, blackberry, windows, theme, mobile-plugin
 Requires at least: 3.0
-Tested up to: 3.7.1
+Tested up to: 3.8
 Stable tag: trunk
 License: GPLv3
 
