@@ -18,6 +18,6 @@ body {
 <div id="page" class="site" data-role="page">
 
 	<?php wps_banner() ?>
-	
+
 	<div id="main" data-role="content">
 	

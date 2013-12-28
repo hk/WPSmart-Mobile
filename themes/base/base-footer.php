@@ -6,7 +6,6 @@
 
 <script type="text/javascript">
     var __WPS = __WPS || {};
-    //_pac.el = "_pae";
 
     function __s(r){
         setTimeout(function(){

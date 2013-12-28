@@ -1,7 +1,5 @@
 		<?php wps_footer_links() ?>
-		
-		</div><!-- #main-content --></div>
-		
+
 	</div><!-- #main -->
 	
 </div><!-- #page -->

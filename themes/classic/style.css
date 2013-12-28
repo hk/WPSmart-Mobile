@@ -511,3 +511,9 @@ article .entry-title {
 #respond .cancel-reply {
 	float: right;
 }
+
+.wps-ad-container {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+}

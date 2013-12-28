@@ -342,7 +342,7 @@ function wps_stream_ad_html( $ads_data ) {
 
                 <?php foreach($ads_data as $ad_data): ?>
 
-                    <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>">
+                    <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>" data-post="">
 
                         <div class="wps-ad-inner">
                             <div class="wps-ad-head">

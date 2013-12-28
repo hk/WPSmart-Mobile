@@ -5,18 +5,22 @@ $is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
 if( ! $is_ajax ) { get_header(); }
 ?>
 
-<div class="front-page-content">
+<div id="main-content">
 
-	<?php while ( have_posts() ) : the_post(); ?>
+    <div class="front-page-content">
 
-		<article id="post-<?php the_ID(); ?>">
-			<div class="entry-wrapper">
-				<div class="entry-content"><?php the_content(); ?></div>
-			</div>
-		</article>
+        <?php while ( have_posts() ) : the_post(); ?>
 
-	<?php endwhile; ?>
+            <article id="post-<?php the_ID(); ?>">
+                <div class="entry-wrapper">
+                    <div class="entry-content"><?php the_content(); ?></div>
+                </div>
+            </article>
 
-</div><!-- .front-page-content -->
+        <?php endwhile; ?>
+
+    </div><!-- .front-page-content -->
+
+</div><!-- #main-content -->
 
 <?php if( ! $is_ajax ) { get_footer(); } ?>

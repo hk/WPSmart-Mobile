@@ -20,6 +20,3 @@ body {
 	<?php wps_banner() ?>	
 	
 	<div id="main" data-role="content">
-	
-		<div id="main-content">
-	

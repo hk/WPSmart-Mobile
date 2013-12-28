@@ -13,34 +13,25 @@ else : // else show normal homepage
 	
 	if( ! $is_ajax ) : get_header(); // if not an ajax request
 ?>
-	
+
+<div id="main-content">
+
 	<div class="home-content">
 	
 		<?php wps_page_head(); ?>
 	
 	<?php endif; // end if not an ajax request ?>
 
-<?php
-// ads code
-//-------------
-$count = 0;
-//-------------
-// endads code
-?>
 
-	
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $count++; ?>
-	
-    	<?php $post_image_src = wps_get_post_image( $post->ID ); ?>
-    	
-    	<?php
-		// ads code
-		//-------------
-		if($count == 3){echo wps_ad();}
-    	//-------------
-		// endads code
-    	?>
-    	
+	<?php $count = 0; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+        <?php
+            $count++;
+            echo $count == 3 ?  wps_ad() : null;
+        ?>
+
+        <?php $post_image_src = wps_get_post_image( $post->ID ); ?>
+
     	<article id="post-<?php the_ID(); ?>">
     		<div class="entry-wrapper" style="<?php echo $post_image_src == '' || ! wps_get_option( 'show_thumbnails' ) ? "padding-right:0" : null ?>">
     			<a href="<?php the_permalink(); ?>" target="_self" rel="bookmark" style="display:block;">
@@ -73,6 +64,8 @@ $count = 0;
 
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
-</div><!-- .home-content -->
+    </div><!-- .home-content -->
+
+</div><!-- #main-content -->
 
 <?php get_footer(); endif; ?>

@@ -13,31 +13,21 @@ else : // else show normal homepage
 	
 	if( ! $is_ajax ) : get_header(); // if not an ajax request
 ?>
-	
+
+<div id="main-content">
+
 	<div class="home-content">
 	
 		<?php wps_page_head(); ?>
 	
 	<?php endif; // end if not an ajax request ?>
 
-<?php
-// ads code
-//-------------
-$count = 0;
-//-------------
-// endads code
-?>
-	
-	
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $count++; ?>
-	
-		<?php
-		// ads code
-		//-------------
-		if($count == 3){echo wps_ad();}
-    	//-------------
-		// endads code
-    	?>
+	<?php $count = 0; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+        <?php
+            $count++;
+            echo $count == 3 ?  wps_ad() : null;
+        ?>
 	
     	<article id="post-<?php the_ID(); ?>">
     		<div class="entry-wrapper">
@@ -72,7 +62,9 @@ $count = 0;
 
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
-</div><!-- .home-content -->
+    </div><!-- .home-content -->
+
+</div><!-- #main-content -->
 
 <script type='text/javascript'>
 $wpsmart(document).ready(function() {
