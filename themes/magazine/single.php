@@ -11,6 +11,8 @@ if( ! $is_ajax ) { get_header(); }
 
         <?php while ( have_posts() ) : the_post(); ?>
 
+            <?php $post_image_src = wps_get_post_image( $post->ID, 'large' ); ?>
+
             <article id="post-<?php the_ID(); ?>">
                 <div class="entry-wrapper">
                     <div class="entry-header">
@@ -21,6 +23,11 @@ if( ! $is_ajax ) { get_header(); }
                             <?php if( wps_get_option( 'show_post_tags' ) && $tags = wps_get_tags() ) : ?><span class="entry-taxonomy"><strong>Tags</strong>: <?php echo $tags ?></span><?php endif; ?>
                         </div>
                     </div>
+
+                    <?php if( $post_image_src != '' && wps_get_option( 'show_featured_image_in_post' ) ): ?>
+                        <div class="entry-image"><img src="<?php echo $post_image_src ?>" /></div>
+                    <?php endif; ?>
+
                     <div class="entry-content"><?php the_content(); ?><a id="endarticle"></a></div>
                 </div>
             </article>

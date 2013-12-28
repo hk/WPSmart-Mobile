@@ -131,7 +131,7 @@ input:focus {
 
 .site-title {
 	padding: 0;
-	width: 180px;
+	width: 200px;
 	margin: 0 auto;
 	text-align: center;
 	line-height: 45px;
@@ -142,14 +142,15 @@ input:focus {
 	color: inherit;
 	position: relative;
 	height: 45px;
-	width: 180px;
+	width: 200px;
 	text-align: center;
 	display: block;
 }
 
 .site-title img {
-	max-height: 45px;
-	max-width: 180px;
+	max-height: 25px;
+	max-width: 200px;
+	vertical-align: middle;
 }
 
 .page-head {

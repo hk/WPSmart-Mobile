@@ -6,13 +6,13 @@
 Plugin Name: WPSmart Mobile
 Plugin URI: http://www.wpsmart.com
 Description: Present your Wordpress site in a beautiful theme optimized for touch-based smartphones
-Version: 1.0.3
+Version: 1.0.4
 Author: WPSmart
 Author URI: http://www.wpsmart.com/mobile
 License: GPLv2 or later
 */
 
-define("WPSMART_VERSION", '1.0.3');
+define("WPSMART_VERSION", '1.0.4');
 define("WPSMART_BASE_THEME", dirname(__FILE__) . '/themes/base');
 
 require_once('admin/admin.php');
@@ -131,9 +131,9 @@ class WPSmart
 				$this->wps_show_mobile = false;
 				add_action( 'wp_footer', array( &$this, 'wps_view_mobile_site' ) );
 			} else {		
-				$server_user_agent = $_SERVER['HTTP_USER_AGENT'];
+				$server_user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 										
-				foreach( $wps_user_agents as $user_agent ) {
+				foreach( $wps_user_agents as $user_agent ) {				
 					if( preg_match( "/$user_agent/", $server_user_agent) ) {
 						$this->wps_show_mobile = true;
 						break;
@@ -284,7 +284,7 @@ function wps_enqueue_header()
     wp_enqueue_script( 'wps-utils' );
 	wp_enqueue_script( 'wps-scripts' );
     wp_enqueue_script( 'wps-base' );
-	
+
 	wp_register_style( 'base-style', wps_get_base_theme_uri() . '/base-css/base.css?t=' . time() );
     wp_register_style( 'wps-ads', wps_get_base_theme_uri() . '/base-css/ads.css?t=' . time() );
 	wp_register_style( 'wps-style', wps_get_theme_uri() . '/style.css?t=' . time() );

@@ -27,9 +27,8 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-35007573-2', 'wpsmart.com');
-  ga('send', 'pageview', {
-  	'dimension0':  'Plugin page'
-  });
+  ga('send', 'pageview');
+  ga('set', 'dimension1', document.domain);
 </script>
 
 </body>

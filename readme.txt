@@ -34,6 +34,21 @@ To customize, go to the *WPSmart* admin page (located in the navigation bar on t
 
 == Changelog ==
 
+= Version 1.0.4 =
+
+* Added: Now you have the option of having featured images automatically displayed on post pages above the post content
+* Added: Confirmed WordPress version 3.8 compatibility
+* Changed: Bigger logos on the site banners, the new maximum image sizes are 200px x 25px
+* Fixed: But on 'Tap to load more' button in preview mode on the admin panel
+* Fixed: Mobile themes will no longer show up in tablets -- we'll be building tablet themes in the very near future :)
+* Removed: We've removed the Web-App mode feature
+
+
+= Version 1.0.3.1 =
+
+* Leftover bug fixes from previous release
+* Added: Additional user-agents added
+
 = Version 1.0.3 =
 
 * Added: Now you have the ability to set a custom front page!
