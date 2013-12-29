@@ -1,4 +1,4 @@
-=== WPSmart Mobile ===
+=== WP Smart Mobile Theme Plugin ===
 Contributors: wpsmart, _henryk, krutal
 Tags: wpsmart, iphone, mobile, smartphone, android, ipod, ipad, blackberry, windows, theme, mobile-plugin
 Requires at least: 3.0
