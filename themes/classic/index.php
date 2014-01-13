@@ -22,7 +22,6 @@ else : // else show normal homepage
 	
 	<?php endif; // end if not an ajax request ?>
 
-
 	<?php $count = 0; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
         <?php
@@ -47,7 +46,6 @@ else : // else show normal homepage
 		</article>
 
 	<?php endwhile; endif; // while have_posts ?>
-
 
     <?php if(get_next_posts_link() != ''): ?>
     

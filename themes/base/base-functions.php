@@ -265,7 +265,7 @@ function wps_get_category()
 {
 	$categories = get_the_category();
 	
-	if( sizeof($catgories) > 0 )
+	if( sizeof($categories) > 0 )
 		return false;
 	else
 		return $categories[0]->cat_name;
@@ -318,96 +318,127 @@ if ( ! function_exists( 'wps_ad' ) ) :
  */
 function wps_ad( $format = 'stream', $ad_type = 'tall' )
 {
-    $result = wp_remote_get('http://t.wpsmart.com/c',array('user-agent' => $_SERVER['HTTP_USER_AGENT']));
-    $ads_data = json_decode($result["body"], true);
+    $result = wp_remote_get("http://t.wpsmart.com/c?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT'], 'timeout' => 30));
 
-    if(sizeof($ads_data) == 0) return; // No ads to show!
+    $ads_data = json_decode($result["body"], true);
+    $ad_id = md5(uniqid(rand(), true));
+
+    if(sizeof($ads_data['c']) == 0) return; // No ads to show!
 
     if($format == 'stream')
-        return wps_stream_ad_html($ads_data);
+        return wps_stream_ad_html($ads_data['c'], $ads_data['d'], $ad_id);
     elseif($format == 'post')
-        return wps_post_ad_html($ads_data);
+        return wps_post_ad_html($ads_data['c'], $ads_data['d'], $ad_id);
 }
 endif;
 
 
-function wps_stream_ad_html( $ads_data ) {
+function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
     ob_start();
+
+
 ?>
 
-    <div class="wps-ad-container wps-ad-stream" data-format="st">
+    <div id="<?php echo $ad_id ?>" class="wps-ad-container wps-ad-stream" data-format="st" data-pid="<?php echo $meta['pid'] ?>" data-rid="<?php echo $meta['rid'] ?>">
         <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
 
-        <?php if( sizeof( $ads_data ) > 1 ): ?><div id="slider" class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
+        <?php if( sizeof( $creatives ) > 1 ): $count = 0; ?><div class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
 
-                <?php foreach($ads_data as $ad_data): ?>
+                <?php foreach($creatives as $creative): $count++; ?>
 
-                    <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>" data-post="">
+                    <div class="wps-ad swiper-slide" data-cid="<?php echo $creative['cid'] ?>" data-pos="<?php echo $count ?>">
 
-                        <div class="wps-ad-inner">
+                        <a href="<?php echo $creative['url'] ?>" class="wps-action">
+
+                            <div class="wps-ad-inner">
                             <div class="wps-ad-head">
-                                <span class="wps-ad-icon"><img src="<?php echo $ad_data['icon'] ?>"/></span>
-                                <span class="wps-ad-head-text"><span class="wps-ad-name"><?php echo $ad_data['title'] ?></span></span>
+                                <span class="wps-ad-icon"><img src="<?php echo $creative['icon'] ?>"/></span>
+                                <span class="wps-ad-head-text"><span class="wps-ad-name"><?php echo $creative['title'] ?></span></span>
                             </div>
-                            <div class="wps-ad-text"><?php echo $ad_data['text'] ?></div>
-                            <div class="wps-ad-image"><a href="<?php echo $ad_data['url'] ?>"><img src="<?php echo $ad_data['image'] ?>"/></a></div>
+                            <div class="wps-ad-text"><?php echo $creative['text'] ?></div>
+                            <div class="wps-ad-image"><img src="<?php echo $creative['image'] ?>"/></div>
 
                             <div class="wps-ad-install">
-                                <div class="wps-ad-install-text"><?php echo $ad_data['title'] ?></div>
-                                <div class="wps-ad-button"><a href="<?php echo $ad_data['url'] ?>" data-ckey="<?php echo $ad_data['ckey'] ?>"><span>Install Now</span></a></div>
+                                <div class="wps-ad-install-text"><?php echo $creative['title'] ?></div>
+                                <div class="wps-ad-button"><span>Install Now</span></div>
                             </div>
                         </div>
-
+                        </a>
                     </div><!-- wps-ad -->
 
                 <?php endforeach; //foreach($ads_data as $ad_data) ?>
 
-        <?php if( sizeof( $ads_data ) > 1 ): ?></div></div><?php endif; ?>
+        <?php if( sizeof( $creatives ) > 1 ): ?></div></div><?php endif; ?>
 
     </div><!-- wps-ad-container -->
+
+    <script type="text/javascript">
+        setTimeout(function(){
+            __WPS.init($wpsmart('#<?php echo $ad_id ?>'));
+        }, 100);
+    </script>
 
 <?php
     return ob_get_clean();
 }
 
-function wps_post_ad_html( $ads_data ) {
+function wps_post_ad_html( $creatives, $meta, $ad_id ) {
     ob_start();
 ?>
 
-    <div id="wps-ad-post" class="wps-ad-container wps-ad-post" data-format="sl">
+    <div id="<?php echo $ad_id ?>"  class="wps-ad-container wps-ad-post" data-format="sl" data-pid="<?php echo $meta['pid'] ?>" data-rid="<?php echo $meta['rid'] ?>">
         <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
         <span id="wps-ad-handle" class="wps-ad-handle close"><em></em></span>
 
-        <?php if( sizeof( $ads_data ) > 1 ): ?><div id="slider" class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
+        <?php if( sizeof( $creatives ) > 1 ): $count = 0; ?><div class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
 
-            <?php foreach($ads_data as $ad_data): ?>
+            <?php foreach($creatives as $creative): $count++; ?>
 
-                <div class="wps-ad swiper-slide" data-ckey="<?php echo $ad_data['ckey'] ?>">
+                <div class="wps-ad swiper-slide" data-cid="<?php echo $creative['cid'] ?>" data-pos="<?php echo $count ?>">
+
+                    <a href="<?php echo $creative['url'] ?>" class="wps-action">
+
                     <div class="wps-ad-inner">
 
-                        <div class="wps-ad-icon"><img src="<?php echo $ad_data['icon'] ?>"/></div>
+                        <div class="wps-ad-icon"><img src="<?php echo $creative['icon'] ?>"/></div>
 
                         <div class="wps-ad-body">
-                            <span class="wps-ad-name"><?php echo $ad_data['title'] ?></span>
-                            <span class="wps-ad-text"><?php echo $ad_data['text'] ?></span>
+                            <span class="wps-ad-name"><?php echo $creative['title'] ?></span>
+                            <span class="wps-ad-text"><?php echo $creative['text'] ?></span>
                         </div>
 
                         <div class="wps-ad-install">
-                            <div class="wps-ad-install-rating">
-                                <span class="filled">&#9734;<span class="filled">&#9734;<span class="filled">&#9734;<span class="filled">&#9734;<span>&#9734;</span></span></span></span></span>
-                            </div>
-                            <div class="wps-ad-button"><a href="<?php echo $ad_data['url'] ?>" data-ckey="<?php echo $ad_data['ckey'] ?>"><span>Install Now</span></a></div>
+                            <div class="wps-ad-install-rating"><?php echo wps_ad_get_rating_html($creative['rating']); ?></div>
+                            <div class="wps-ad-button"><span>Install Now</span></div>
                         </div>
                     </div>
-            </div><!-- wps-ad -->
+
+                    </a>
+
+                </div><!-- wps-ad -->
 
             <?php endforeach; //foreach($ads_data as $ad_data) ?>
 
-        <?php if( sizeof( $ads_data ) > 1 ): ?></div></div><?php endif; ?>
+        <?php if( sizeof( $creatives ) > 1 ): ?></div></div><?php endif; ?>
 
     </div><!-- wps-ad-container -->
 
+    <script type="text/javascript">
+        setTimeout(function(){
+            __WPS.init($wpsmart('#<?php echo $ad_id ?>'));
+        }, 100);
+    </script>
 
 <?php
     return ob_get_clean();
+}
+
+function wps_ad_get_rating_html($rating) {
+    if($rating == 0 || $rating == '') return;
+
+    $width_percent = ($rating / 5) * 100;
+
+    $html = "<span><span style=\"width:{$width_percent}%\"></span></span>";
+
+    return $html;
 }

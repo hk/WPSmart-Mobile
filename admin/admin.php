@@ -3,7 +3,7 @@
 <div class="wps-admin-wrap">
 
 	<div class="wps-admin-header">
-		<img src="<?php echo $wpsmart->wps_plugin_admin_uri() ?>/images/wpsmart.png"/>
+		<img src="<?php echo $wpsmart->wps_plugin_admin_uri() ?>/images/wpsmart.png" width="180"/>
 	</div>
 	
 	<div class="wps-admin-save-bar">

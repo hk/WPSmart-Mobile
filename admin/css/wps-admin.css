@@ -359,6 +359,10 @@ input.wps-input-small {
 	opacity: .7;
 }
 
+.wps-admin-logo-preview img {
+    max-width: 200px;
+}
+
 .wps-admin-logo-preview .wps-remove-logo:hover {
 	opacity: 1;
 }

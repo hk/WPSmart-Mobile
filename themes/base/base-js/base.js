@@ -51,11 +51,20 @@ $wpsmart(document).ready(function() {
     	var object = $wpsmart(this);
     	object.text('Loading...');
     	
-    	var data = {action: 'wpsmart_load_more'};
+    	var data = {action: 'wpsmart_load_more'},
+            page_title = $wpsmart(document).find("title").text(),
+            new_url = object.parent().data('url');
+
     	    	
-    	$wpsmart.get(object.parent().data('url'), function(response) {
-    		setTimeout(function() { $wpsmart('#load-more').replaceWith(response);replace_preview_links(); }, 1000);
-            ga('send','pageview', object.parent().data('url'));
+    	$wpsmart.get(new_url, function(response) {
+
+            history.pushState({}, page_title, new_url);
+
+            setTimeout(function() {
+                $wpsmart('#load-more').replaceWith(response);
+                replace_preview_links();
+                ga('send','pageview', object.parent().data('url'), {'dimension1': document.domain});
+            }, 1000);
     	});
     	
     	return false;

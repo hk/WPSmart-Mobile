@@ -5,7 +5,6 @@ $is_ajax = isset( $_SERVER['HTTP_X_REQUESTED_WITH'] );
 if( ! $is_ajax ) { get_header(); }
 ?>
 
-<<<<<<< HEAD
 <div id="main-content">
 
     <div class="single-content">

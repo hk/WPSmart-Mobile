@@ -59,7 +59,6 @@ else : // else show normal homepage
 
 <?php endif; // end if custom front page is set ?>
 
-
 <?php if( ! $is_ajax ) : // if not an ajax request ?>
 
     </div><!-- .home-content -->
