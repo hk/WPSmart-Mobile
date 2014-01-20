@@ -3,7 +3,7 @@
 <style>
 body {
 	background-color: <?php echo wps_get_option( 'site_background_color' ); ?>;
-	font-family: <?php echo wps_get_option( 'site_font' ); ?>;
+	font-family: '<?php echo wps_get_option( 'site_font' ); ?>';
 }
 .site-header {
 	background-color: <?php echo wps_get_option( 'header_background_color' ); ?>;
