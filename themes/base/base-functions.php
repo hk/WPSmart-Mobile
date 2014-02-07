@@ -318,7 +318,8 @@ if ( ! function_exists( 'wps_ad' ) ) :
  */
 function wps_ad( $format = 'stream', $ad_type = 'tall' )
 {
-    $result = wp_remote_get("http://t.wpsmart.com/c?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT'], 'timeout' => 30));
+    //$result = wp_remote_get("http://t.wpsmart.com/c?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT'], 'timeout' => 30));
+    $result = wp_remote_get("http://b.nptn.co/r?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT']));
 
     $ads_data = json_decode($result["body"], true);
     $ad_id = md5(uniqid(rand(), true));
@@ -335,11 +336,8 @@ endif;
 
 function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
     ob_start();
-
-
 ?>
-
-    <div id="<?php echo $ad_id ?>" class="wps-ad-container wps-ad-stream" data-format="st" data-pid="<?php echo $meta['pid'] ?>" data-rid="<?php echo $meta['rid'] ?>">
+    <div id="<?php echo $ad_id ?>" class="wps-ad-container wps-ad-stream" data-format="st" data-pid="<?php echo $meta['pid'] ?>">
         <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
 
         <?php if( sizeof( $creatives ) > 1 ): $count = 0; ?><div class="swiper-container"><div class="swiper-wrapper"><?php endif; ?>
@@ -348,19 +346,17 @@ function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
 
                     <div class="wps-ad swiper-slide" data-cid="<?php echo $creative['cid'] ?>" data-pos="<?php echo $count ?>">
 
-                        <a href="<?php echo $creative['url'] ?>" class="wps-action">
-
                             <div class="wps-ad-inner">
                             <div class="wps-ad-head">
-                                <span class="wps-ad-icon"><img src="<?php echo $creative['icon'] ?>"/></span>
-                                <span class="wps-ad-head-text"><span class="wps-ad-name"><?php echo $creative['title'] ?></span></span>
+                                <span class="wps-ad-icon"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><img src="<?php echo $creative['icon'] ?>"/></a></span>
+                                <span class="wps-ad-head-text"><span class="wps-ad-name"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><?php echo $creative['title'] ?></a></span></span>
                             </div>
                             <div class="wps-ad-text"><?php echo $creative['text'] ?></div>
                             <div class="wps-ad-image"><img src="<?php echo $creative['image'] ?>"/></div>
 
                             <div class="wps-ad-install">
                                 <div class="wps-ad-install-text"><?php echo $creative['title'] ?></div>
-                                <div class="wps-ad-button"><span>Install Now</span></div>
+                                <div class="wps-ad-button"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><span>Install Now</span></a></div>
                             </div>
                         </div>
                         </a>
@@ -385,8 +381,7 @@ function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
 function wps_post_ad_html( $creatives, $meta, $ad_id ) {
     ob_start();
 ?>
-
-    <div id="<?php echo $ad_id ?>"  class="wps-ad-container wps-ad-post" data-format="sl" data-pid="<?php echo $meta['pid'] ?>" data-rid="<?php echo $meta['rid'] ?>">
+    <div id="<?php echo $ad_id ?>"  class="wps-ad-container wps-ad-post" data-format="sl" data-pid="<?php echo $meta['pid'] ?>">
         <span class="wps-ad-sponsored">Recommended Apps (Sponsored)</span>
         <span id="wps-ad-handle" class="wps-ad-handle close"><em></em></span>
 
@@ -396,20 +391,18 @@ function wps_post_ad_html( $creatives, $meta, $ad_id ) {
 
                 <div class="wps-ad swiper-slide" data-cid="<?php echo $creative['cid'] ?>" data-pos="<?php echo $count ?>">
 
-                    <a href="<?php echo $creative['url'] ?>" class="wps-action">
-
                     <div class="wps-ad-inner">
 
-                        <div class="wps-ad-icon"><img src="<?php echo $creative['icon'] ?>"/></div>
+                        <div class="wps-ad-icon"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><img src="<?php echo $creative['icon'] ?>"/></a></div>
 
                         <div class="wps-ad-body">
-                            <span class="wps-ad-name"><?php echo $creative['title'] ?></span>
+                            <span class="wps-ad-name"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><?php echo $creative['title'] ?></a></span>
                             <span class="wps-ad-text"><?php echo $creative['text'] ?></span>
                         </div>
 
                         <div class="wps-ad-install">
                             <div class="wps-ad-install-rating"><?php echo wps_ad_get_rating_html($creative['rating']); ?></div>
-                            <div class="wps-ad-button"><span>Install Now</span></div>
+                            <div class="wps-ad-button"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><span>Install Now</span></a></div>
                         </div>
                     </div>
 
@@ -442,3 +435,23 @@ function wps_ad_get_rating_html($rating) {
 
     return $html;
 }
+
+function wps_related_content()
+{
+    global $post;
+
+    $other_posts = get_posts(array('posts_per_page' => 3, 'exclude' => $post->ID));
+?>
+
+    <div class="related-content-button"><span id="view-related-content">View more articles</span></div>
+
+    <div id="related-content" class="related-content hidden">
+        <ul>
+            <?php foreach($other_posts as $other_post): ?>
+
+            <li><a href="<?php echo get_permalink( $other_post->ID ); ?>"><?php echo $other_post->post_title; ?></a></li>
+
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php wp_reset_postdata(); }

@@ -7,9 +7,9 @@ if( ! $is_ajax ) { get_header(); }
 
 <div id="main-content">
 
-    <div class="single-content">
+    <?php while ( have_posts() ) : the_post(); ?>
 
-        <?php while ( have_posts() ) : the_post(); ?>
+        <div class="single-content">
 
             <?php $post_image_src = wps_get_post_image( $post->ID, 'large' ); ?>
 
@@ -31,11 +31,14 @@ if( ! $is_ajax ) { get_header(); }
                     <div class="entry-content"><?php the_content(); ?><a id="endarticle"></a></div>
                 </div>
             </article>
-        <?php comments_template( '', true ); ?>
 
-        <?php endwhile; ?>
+            <?php wps_related_content() ?>
 
-    </div><!-- .single-content -->
+            <?php comments_template( '', true ); ?>
+
+        </div><!-- .single-content -->
+
+    <?php endwhile; ?>
 
 </div><!-- #main-content -->
 

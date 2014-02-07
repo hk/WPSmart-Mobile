@@ -70,6 +70,10 @@ $wpsmart(document).ready(function() {
     	return false;
     });
 
+    $wpsmart('#main').on('click', '#view-related-content', function(event) {
+        $wpsmart('#related-content').toggleClass('hidden');
+    });
+
     $wpsmart(function() {
         replace_preview_links();
     });

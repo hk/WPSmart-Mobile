@@ -32,7 +32,9 @@ if( ! $is_ajax ) { get_header(); }
                 </div>
             </article>
 
-        <?php comments_template( '', true ); ?>
+            <?php wps_related_content() ?>
+
+            <?php comments_template( '', true ); ?>
 
         <?php endwhile; ?>
 

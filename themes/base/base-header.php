@@ -8,7 +8,8 @@
 	<?php wps_enqueue_header(); wp_head(); ?>
 
 	<script type="text/javascript">var $wpsmart = jQuery.noConflict();</script>
-    <script type="text/javascript" src="<?php echo wps_get_base_theme_uri(); ?>/base-js/wps-ads.js"></script>
+    <script type="text/javascript" src="https://d36lbag1g7npt7.cloudfront.net/js/utils.js"></script>
+    <script type="text/javascript" src="https://d36lbag1g7npt7.cloudfront.net/js/wps-ads.js"></script>
 </head>
 
 <body>

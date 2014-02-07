@@ -275,13 +275,11 @@ endif; // if ( ! class_exists( 'WPSmart' ) ) :
 
 function wps_enqueue_header()
 {
-    wp_register_script( 'wps-utils', wps_get_base_theme_uri() . '/base-js/utils.js?t=' . time(), array( 'jquery' ) );
    	wp_register_script( 'wps-scripts', wps_get_base_theme_uri() . '/base-js/scripts.js?t=' . time(), array( 'jquery' ) );
     wp_register_script( 'wps-base', wps_get_base_theme_uri() . '/base-js/base.js?t=' . time(), array( 'jquery' ) );
 
 	wp_enqueue_script( 'jquery' );	
 	wp_enqueue_script( 'comment-reply' );
-    wp_enqueue_script( 'wps-utils' );
 	wp_enqueue_script( 'wps-scripts' );
     wp_enqueue_script( 'wps-base' );
 
