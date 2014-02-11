@@ -405,6 +405,16 @@ article .entry-title {
 }
 
 
+/* Related content */
+
+.related-content {
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #ddd;
+    margin: 0 0 20px 0;
+}
+
+
 /* Comments */
 
 #disqus_thread {

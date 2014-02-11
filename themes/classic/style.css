@@ -399,17 +399,6 @@ article .entry-title {
 	background: none!important;
 }
 
-/* Related content */
-
-.related-content,
-.related-content-button {
-    margin: 0 10px;
-}
-
-.related-content-button span {
-    background: #fafafc;
-}
-
 /* Comments */
 
 #disqus_thread {

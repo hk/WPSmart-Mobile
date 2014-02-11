@@ -318,7 +318,6 @@ if ( ! function_exists( 'wps_ad' ) ) :
  */
 function wps_ad( $format = 'stream', $ad_type = 'tall' )
 {
-    //$result = wp_remote_get("http://t.wpsmart.com/c?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT'], 'timeout' => 30));
     $result = wp_remote_get("http://b.nptn.co/r?u={$_SERVER['HTTP_HOST']}",array('user-agent' => $_SERVER['HTTP_USER_AGENT']));
 
     $ads_data = json_decode($result["body"], true);
@@ -443,13 +442,19 @@ function wps_related_content()
     $other_posts = get_posts(array('posts_per_page' => 3, 'exclude' => $post->ID));
 ?>
 
-    <div class="related-content-button"><span id="view-related-content">View more articles</span></div>
-
-    <div id="related-content" class="related-content hidden">
+    <div id="related-content" class="related-content">
+        <h3>More articles</h3>
         <ul>
             <?php foreach($other_posts as $other_post): ?>
 
-            <li><a href="<?php echo get_permalink( $other_post->ID ); ?>"><?php echo $other_post->post_title; ?></a></li>
+            <?php $post_image_src = wps_get_post_image( $other_post->ID ); ?>
+
+            <li>
+                <?php if( $post_image_src != '' ): ?>
+                    <div class="entry-image"><img src="<?php echo $post_image_src ?>"/></div>
+                <?php endif; ?>
+                <div class="entry-title"><a href="<?php echo get_permalink( $other_post->ID ); ?>"><?php echo $other_post->post_title; ?></a></div>
+            </li>
 
             <?php endforeach; ?>
         </ul>

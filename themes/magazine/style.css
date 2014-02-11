@@ -391,6 +391,15 @@ article .entry-title {
 	background: none!important;
 }
 
+/* Related content */
+
+.related-content {
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #ddd;
+    margin: 0 0 20px 0;
+}
+
 
 /* Comments */
 
