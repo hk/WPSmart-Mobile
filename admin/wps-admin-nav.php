@@ -4,5 +4,7 @@
 		<li><a href="#" data-page="themes"><span class="icon">&#127748;</span>Themes</a></li>
 		<li><a href="#" data-page="appearance"><span class="icon">&#59290;</span>Appearance</a></li>
 		<li><a href="#" data-page="menu"><span class="icon">&#9776;</span>Menu</a></li>
+		
+		<li><a href="#" data-page="menu"><span class="icon">&#59190;</span>Ads</a></li>
 	</ul>
 </div>

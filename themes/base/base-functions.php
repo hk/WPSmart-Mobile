@@ -345,7 +345,7 @@ function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
 
                     <div class="wps-ad swiper-slide" data-cid="<?php echo $creative['cid'] ?>" data-pos="<?php echo $count ?>">
 
-                            <div class="wps-ad-inner">
+                        <div class="wps-ad-inner">
                             <div class="wps-ad-head">
                                 <span class="wps-ad-icon"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><img src="<?php echo $creative['icon'] ?>"/></a></span>
                                 <span class="wps-ad-head-text"><span class="wps-ad-name"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><?php echo $creative['title'] ?></a></span></span>
@@ -358,7 +358,6 @@ function wps_stream_ad_html( $creatives, $meta, $ad_id ) {
                                 <div class="wps-ad-button"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><span>Install Now</span></a></div>
                             </div>
                         </div>
-                        </a>
                     </div><!-- wps-ad -->
 
                 <?php endforeach; //foreach($ads_data as $ad_data) ?>
@@ -404,8 +403,6 @@ function wps_post_ad_html( $creatives, $meta, $ad_id ) {
                             <div class="wps-ad-button"><a href="<?php echo $creative['url'] ?>" class="wps-ad-link"><span>Install Now</span></a></div>
                         </div>
                     </div>
-
-                    </a>
 
                 </div><!-- wps-ad -->
 
